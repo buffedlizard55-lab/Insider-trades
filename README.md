@@ -128,8 +128,10 @@ Across our full multi-year quantitative sweep over **4,856 insider Form 4 trades
 5. **#1 Best Coordinated C-Suite Cluster Strategy — `CSUITE_CLUSTER` (90 Days)**:
    - **Total Return (ROI)**: **+4.70%** (`$104,700.00` final equity across elite CEO+CFO simultaneous cluster buys)
    - **Win Rate**: **66.67%** | **Profit Factor**: **1.92**
-
-For full 25-strategy performance tracking and analysis across real historical stock prices, see [`docs/FULL_DATASET_BACKTEST_PERFORMANCE.md`](docs/FULL_DATASET_BACKTEST_PERFORMANCE.md) or run `python main.py full-backtest`.
+6. **Verified Trade Logs & Strategy Deep-Dives**:
+   - **Real Completed 2026 Trades Log (YTD)**: See [`docs/TRADES_2026_STRATEGY_LOGS.md`](docs/TRADES_2026_STRATEGY_LOGS.md) for actual 2026 completed trades, entry/exit dates, prices, P&L, trigger reasons, and SEC EDGAR links.
+   - **Individual Analysis of Top 4 Performing Strategies**: See [`docs/TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md`](docs/TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md) for individual multi-year trade tables and strategy breakdown.
+   - **Complete 25-Strategy Performance Tracker**: See [`docs/FULL_DATASET_BACKTEST_PERFORMANCE.md`](docs/FULL_DATASET_BACKTEST_PERFORMANCE.md) or run `python main.py full-backtest`.
 
 For complete methodology and strategy documentation, see [`docs/STRATEGIES.md`](docs/STRATEGIES.md).
 

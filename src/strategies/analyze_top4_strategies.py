@@ -136,13 +136,13 @@ class Top4StrategiesAnalyzer:
             "- **Estimated Annualized Sharpe Ratio**: **`3.56`** | **Max Drawdown**: **`2.08%`**",
             "- **Quantitative Rationale**: By systematically entering on *either* a C-Suite CEO/CFO Conviction Buy ($> \\$100k$) *or* an Executive/Director Cluster Buy within 14 days, this strategy captures the broadest set of high-conviction insider accumulation signals across all 11 GICS sectors.",
             "",
-            "### Verified Trade Log: Entries, Exits, P&L & Trigger Links (Top 15 Representative Trades)",
+            "### Verified Trade Log: Clear Entries, Exits, Prices & P&L (Top 25 Representative Trades)",
             "",
-            "| Ticker | Industry | Entry Date | Entry Price | Exit Date | Exit Reason | Exit Price | Hold (Days) | Return (%) | P&L ($) | Trigger Event / Reason | SEC EDGAR & Local Source Link |",
-            "| :--- | :--- | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :--- | :--- |",
+            "| Ticker | Industry | Entry Date | Entry Price ($) | Exit Date | Exit Price ($) | Exit Reason | Hold (Days) | Return (%) | P&L ($) | Reason Trade Was Placed (Trigger Event) | SEC EDGAR Form 4 Link |",
+            "| :--- | :--- | :---: | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :--- | :--- |",
         ])
 
-        def add_trade_rows(sum_obj: BacktestSummary, max_rows: int = 15) -> List[str]:
+        def add_trade_rows(sum_obj: BacktestSummary, max_rows: int = 25) -> List[str]:
             rows = []
             for t in sum_obj.trade_log[:max_rows]:
                 acc = t.trigger_accession or "N/A"
@@ -150,11 +150,11 @@ class Top4StrategiesAnalyzer:
                 reason = (t.trigger_reason or "Insider open-market purchase signal").replace("|", "-")
                 local_f = t.local_source_file or f"data/industries/{t.sector}/{t.industry}/{t.ticker}_insider_trades.csv"
                 rows.append(
-                    f"| **{t.ticker}** | {t.industry} | {t.entry_date} | ${t.entry_price:,.2f} | {t.exit_date} | `{t.exit_reason}` | ${t.exit_price:,.2f} | {t.holding_days} | **{t.return_pct:+.2f}%** | **${t.pnl_dollar:+,.2f}** | {reason[:50]}... | [SEC EDGAR Filing]({url})<br>`{acc}`<br>`{local_f}` |"
+                    f"| **{t.ticker}** | {t.industry} | **{t.entry_date}** | **${t.entry_price:,.2f}** | **{t.exit_date}** | **${t.exit_price:,.2f}** | `{t.exit_reason}` | {t.holding_days} | **{t.return_pct:+.2f}%** | **${t.pnl_dollar:+,.2f}** | {reason[:55]}... | [SEC EDGAR Filing]({url})<br>`{acc}`<br>`{local_f}` |"
                 )
             return rows
 
-        lines.extend(add_trade_rows(summaries["COMBINED_90D"], 15))
+        lines.extend(add_trade_rows(summaries["COMBINED_90D"], 25))
 
         lines.extend([
             "",
@@ -168,13 +168,13 @@ class Top4StrategiesAnalyzer:
             "- **Profit Factor**: **`20.29`** | **Estimated Sharpe Ratio**: **`3.59`** | **Max Drawdown**: **`2.25%`**",
             "- **Quantitative Rationale**: Takes entries on open-market insider purchases (`P`) within GICS industries experiencing **Strong Buy Accumulation** (Buy/Sell dollar ratio $\ge 1.5x$), capturing powerful institutional sector rotation and industry momentum.",
             "",
-            "### Verified Trade Log: Entries, Exits, P&L & Trigger Links (Top 15 Representative Trades)",
+            "### Verified Trade Log: Clear Entries, Exits, Prices & P&L (Top 25 Representative Trades)",
             "",
-            "| Ticker | Industry | Entry Date | Entry Price | Exit Date | Exit Reason | Exit Price | Hold (Days) | Return (%) | P&L ($) | Trigger Event / Reason | SEC EDGAR & Local Source Link |",
+            "| Ticker | Industry | Entry Date | Entry Price ($) | Exit Date | Exit Price ($) | Exit Reason | Hold (Days) | Return (%) | P&L ($) | Reason Trade Was Placed (Trigger Event) | SEC EDGAR Form 4 Link |",
             "| :--- | :--- | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :--- | :--- |",
         ])
 
-        lines.extend(add_trade_rows(summaries["INDUSTRY_MOMENTUM_90D"], 15))
+        lines.extend(add_trade_rows(summaries["INDUSTRY_MOMENTUM_90D"], 25))
 
         lines.extend([
             "",
@@ -188,13 +188,13 @@ class Top4StrategiesAnalyzer:
             "- **Profit Factor**: **`24.32`** | **Estimated Sharpe Ratio**: **`3.79`** | **Max Drawdown**: **`1.12%`**",
             "- **Quantitative Rationale**: Isolates discretionary open-market purchases by Chief Executive Officers (CEOs) or Chief Financial Officers (CFOs) exceeding **$100,000**. Because CEOs and CFOs possess the highest internal visibility into quarterly earnings and margins, their personal capital commitment generates a **91.45% win rate** and a **3.79 Sharpe ratio**.",
             "",
-            "### Verified Trade Log: Entries, Exits, P&L & Trigger Links (Top 15 Representative Trades)",
+            "### Verified Trade Log: Clear Entries, Exits, Prices & P&L (Top 25 Representative Trades)",
             "",
-            "| Ticker | Industry | Entry Date | Entry Price | Exit Date | Exit Reason | Exit Price | Hold (Days) | Return (%) | P&L ($) | Trigger Event / Reason | SEC EDGAR & Local Source Link |",
+            "| Ticker | Industry | Entry Date | Entry Price ($) | Exit Date | Exit Price ($) | Exit Reason | Hold (Days) | Return (%) | P&L ($) | Reason Trade Was Placed (Trigger Event) | SEC EDGAR Form 4 Link |",
             "| :--- | :--- | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :--- | :--- |",
         ])
 
-        lines.extend(add_trade_rows(summaries["CONVICTION_90D"], 15))
+        lines.extend(add_trade_rows(summaries["CONVICTION_90D"], 25))
 
         lines.extend([
             "",
@@ -208,13 +208,13 @@ class Top4StrategiesAnalyzer:
             "- **Profit Factor**: **`13.03`** | **Estimated Sharpe Ratio**: **`3.02`** | **Max Drawdown**: **`1.65%`**",
             "- **Quantitative Rationale**: Detects simultaneous independent open-market purchases (`P`) by 2 or more Executive Officers or Directors within a 14-calendar-day window, signaling systematic internal optimism across the C-Suite and Board.",
             "",
-            "### Verified Trade Log: Entries, Exits, P&L & Trigger Links (Top 15 Representative Trades)",
+            "### Verified Trade Log: Clear Entries, Exits, Prices & P&L (Top 25 Representative Trades)",
             "",
-            "| Ticker | Industry | Entry Date | Entry Price | Exit Date | Exit Reason | Exit Price | Hold (Days) | Return (%) | P&L ($) | Trigger Event / Reason | SEC EDGAR & Local Source Link |",
+            "| Ticker | Industry | Entry Date | Entry Price ($) | Exit Date | Exit Price ($) | Exit Reason | Hold (Days) | Return (%) | P&L ($) | Reason Trade Was Placed (Trigger Event) | SEC EDGAR Form 4 Link |",
             "| :--- | :--- | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :--- | :--- |",
         ])
 
-        lines.extend(add_trade_rows(summaries["CLUSTER_BUY_90D"], 15))
+        lines.extend(add_trade_rows(summaries["CLUSTER_BUY_90D"], 25))
 
         lines.extend([
             "",
