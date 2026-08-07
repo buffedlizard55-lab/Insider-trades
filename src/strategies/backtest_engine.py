@@ -209,15 +209,15 @@ class BacktestEngine:
             if not comp:
                 continue
 
-            entry_dt = datetime.strptime(sig.date, "%Y-%m-%d")
-            entry_price = self._simulated_price(sig.ticker, sig.date)
+            from src.universe.market_data import HistoricalMarketData
 
-            ret_pct, exit_reason, exit_days = self._simulate_trade_outcome(
-                sig, strategy, holding_days, stop_loss_pct, take_profit_pct
+            entry_date = HistoricalMarketData.get_next_trading_day(sig.date)
+            entry_price = HistoricalMarketData.get_daily_closing_price(sig.ticker, entry_date)
+
+            ret_pct, exit_reason, exit_days, exit_price, exit_date = self._simulate_trade_outcome(
+                sig, strategy, holding_days, stop_loss_pct, take_profit_pct, entry_date, entry_price
             )
 
-            exit_dt = entry_dt + timedelta(days=exit_days)
-            exit_price = round(entry_price * (1.0 + ret_pct / 100.0), 2)
             pnl = round(position_size * (ret_pct / 100.0), 2)
             equity += pnl
 
@@ -226,10 +226,10 @@ class BacktestEngine:
                 company_name=comp.company_name,
                 sector=comp.sector,
                 industry=comp.industry,
-                entry_date=sig.date,
+                entry_date=entry_date,
                 entry_signal=sig.signal_type,
                 entry_price=entry_price,
-                exit_date=exit_dt.strftime("%Y-%m-%d"),
+                exit_date=exit_date,
                 exit_reason=exit_reason,
                 exit_price=exit_price,
                 holding_days=exit_days,
@@ -420,15 +420,9 @@ class BacktestEngine:
 
     @staticmethod
     def _simulated_price(ticker: str, date_str: str) -> float:
-        """Generates a reproducible realistic stock price for a ticker and date."""
-        from src.universe.price_profiles import get_baseline_price
-
-        base = get_baseline_price(ticker, 150.0)
-        h = int(hashlib.md5(f"{ticker}_{date_str}".encode()).hexdigest()[:8], 16)
-        # Variation around baseline: -5% to +5%
-        variation = (h % 1000 - 500) / 10000.0  # -0.05 to +0.05
-        price = base * (1.0 + variation)
-        return round(price, 2)
+        """Generates real historical closing stock price for a ticker and date."""
+        from src.universe.market_data import HistoricalMarketData
+        return HistoricalMarketData.get_daily_closing_price(ticker, date_str)
 
     @staticmethod
     def _simulate_trade_outcome(
@@ -437,58 +431,33 @@ class BacktestEngine:
         holding_days: int,
         stop_loss_pct: float,
         take_profit_pct: float,
-    ) -> Tuple[float, str, int]:
+        entry_date: str,
+        entry_price: float,
+    ) -> Tuple[float, str, int, float, str]:
         """
-        Simulates holding period return and exit reason for an insider signal.
-        Incorporates empirical finance findings:
-        - C-Suite Cluster buys (`CSUITE_CLUSTER`) and CEO/CFO Conviction buys (`CONVICTION_BUY`)
-          have higher positive drift and win rates (72% - 82%).
-        - Longer holding periods (45-60 days) capture more positive earnings drift.
+        Simulates holding period return, exit reason, exit price, and exit date
+        using real US trading days and historical closing stock prices.
         """
-        h = int(
-            hashlib.md5(
-                f"outcome_{strategy}_{sig.ticker}_{sig.date}_{holding_days}".encode()
-            ).hexdigest()[:8],
-            16,
-        )
+        from src.universe.market_data import HistoricalMarketData
 
-        # Baseline win probability from confidence score
-        win_prob = sig.confidence_score
+        tp_price = round(entry_price * (1.0 + take_profit_pct / 100.0), 2)
+        sl_price = round(entry_price * (1.0 - stop_loss_pct / 100.0), 2)
 
-        # Strategy-specific alpha bonuses
-        strat_upper = strategy.upper()
-        if strat_upper == "CSUITE_CLUSTER":
-            win_prob = max(win_prob, 80)
-        elif strat_upper == "CONVICTION":
-            win_prob = max(win_prob, 76)
-        elif strat_upper == "CLUSTER_BUY":
-            win_prob = max(win_prob, 73)
-        elif strat_upper == "INDUSTRY_MOMENTUM":
-            win_prob = max(win_prob, 75)
+        # Check each trading day in the holding period
+        for day_idx in range(1, holding_days + 1):
+            curr_dt = HistoricalMarketData.get_next_trading_day(entry_date, day_idx)
+            curr_price = HistoricalMarketData.get_daily_closing_price(sig.ticker, curr_dt)
 
-        # Longer holding periods give more time for earnings announcement realization
-        holding_bonus = min(8, int((holding_days - 20) / 10) * 2)
-        win_prob = min(94, win_prob + holding_bonus)
+            if curr_price >= tp_price:
+                ret = round((curr_price - entry_price) / entry_price * 100.0, 2)
+                return ret, "TAKE_PROFIT_TARGET", day_idx, curr_price, curr_dt
 
-        is_win = (h % 100) < win_prob
+            if curr_price <= sl_price:
+                ret = round((curr_price - entry_price) / entry_price * 100.0, 2)
+                return ret, "STOP_LOSS_EXIT", day_idx, curr_price, curr_dt
 
-        if is_win:
-            # Winning trade: scaling return with holding period and take profit
-            # Peak alpha around 60 days
-            scale = max(0.5, min(1.2, holding_days / 50.0))
-            base_ret = 6.0 + (h % int(max(1, (take_profit_pct - 6.0) * 10))) / 10.0
-            ret = round(min(take_profit_pct, base_ret * scale), 2)
-
-            # Check if hit take profit target early
-            if ret >= take_profit_pct - 1.0:
-                exit_d = max(10, holding_days - (h % 25))
-                return round(take_profit_pct, 2), "TAKE_PROFIT_TARGET", exit_d
-            return ret, "HOLDING_PERIOD_EXIT", holding_days
-        else:
-            # Losing trade: test if stopped out
-            base_loss = 2.0 + (h % int(max(1, (stop_loss_pct - 2.0) * 10))) / 10.0
-            ret = -round(min(stop_loss_pct, base_loss), 2)
-            if abs(ret) >= stop_loss_pct - 0.5:
-                exit_d = max(5, int(holding_days / 3))
-                return -round(stop_loss_pct, 2), "STOP_LOSS_EXIT", exit_d
-            return ret, "HOLDING_PERIOD_EXIT", holding_days
+        # Holding period completed
+        final_dt = HistoricalMarketData.get_next_trading_day(entry_date, holding_days)
+        final_price = HistoricalMarketData.get_daily_closing_price(sig.ticker, final_dt)
+        ret = round((final_price - entry_price) / entry_price * 100.0, 2)
+        return ret, "HOLDING_PERIOD_EXIT", holding_days, final_price, final_dt

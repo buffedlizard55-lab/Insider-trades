@@ -173,4 +173,10 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     fdb = FullDatasetBacktester()
     df, results, winners = fdb.run_all_backtests_and_track_roi()
+    md = fdb.generate_performance_report_markdown(df, winners)
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    doc_path = os.path.join(root_dir, "docs", "FULL_DATASET_BACKTEST_PERFORMANCE.md")
+    with open(doc_path, "w", encoding="utf-8") as f:
+        f.write(md)
     print("Full dataset backtest complete! Best overall:", winners["OVERALL_HIGHEST_ROI"].strategy_name)
+    print("Updated docs/FULL_DATASET_BACKTEST_PERFORMANCE.md successfully!")

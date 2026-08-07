@@ -400,11 +400,11 @@ class IndustryOrganizer:
             )
 
             for i in range(num_trades):
+                from src.universe.market_data import HistoricalMarketData
                 offset_days = random.randint(0, days_in_range - 1)
-                txn_dt = end_date - timedelta(days=offset_days)
-                filing_dt = txn_dt + timedelta(days=1)
-                txn_date = txn_dt.strftime("%Y-%m-%d")
-                filing_date = filing_dt.strftime("%Y-%m-%d")
+                raw_dt = end_date - timedelta(days=offset_days)
+                txn_date = HistoricalMarketData.get_next_trading_day(raw_dt.strftime("%Y-%m-%d"))
+                filing_date = HistoricalMarketData.get_next_trading_day(txn_date, 1)
 
                 title = random.choice(titles)
                 is_off = "Chief" in title or "President" in title
@@ -419,9 +419,8 @@ class IndustryOrganizer:
                         0
                     ]
 
-                from src.universe.price_profiles import get_baseline_price
-                base_p = get_baseline_price(comp.ticker, 150.0)
-                price = round(base_p * random.uniform(0.92, 1.08), 2)
+                from src.universe.market_data import HistoricalMarketData
+                price = HistoricalMarketData.get_daily_closing_price(comp.ticker, txn_date)
                 shares = random.randint(5, 50) * 100
                 total_val = round(shares * price, 2)
                 acq_disp = "A" if code in ("P", "A", "M") else "D"
@@ -455,15 +454,16 @@ class IndustryOrganizer:
                 company_trades.append(trade_rec)
 
             if has_cluster_buy:
-                cluster_date = f"{year}-07-20" if year == 2026 else f"{year}-06-15"
-                filing_date = f"{year}-07-21" if year == 2026 else f"{year}-06-16"
+                from src.universe.market_data import HistoricalMarketData
+                raw_cd = f"{year}-07-20" if year == 2026 else f"{year}-06-15"
+                cluster_date = HistoricalMarketData.get_next_trading_day(raw_cd)
+                filing_date = HistoricalMarketData.get_next_trading_day(cluster_date, 1)
                 for officer_title, name_suffix in [
                     ("Chief Executive Officer", "CEO_Conviction"),
                     ("Chief Financial Officer", "CFO_Conviction"),
                 ]:
                     shares = 5000
-                    base_p = get_baseline_price(comp.ticker, 150.0)
-                    price = round(base_p * random.uniform(0.95, 1.05), 2)
+                    price = HistoricalMarketData.get_daily_closing_price(comp.ticker, cluster_date)
                     yr_short = str(year)[-2:]
                     company_trades.append(
                         {

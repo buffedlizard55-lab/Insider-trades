@@ -9,24 +9,24 @@ from typing import Dict
 # Realistic baseline current/reference stock prices in USD (Year 2026 baseline)
 TICKER_BASELINE_PRICES: Dict[str, float] = {
     # Information Technology - Semiconductors
-    "AMD": 420.00,    # Advanced Micro Devices (> $400)
-    "NVDA": 145.00,   # NVIDIA Corporation (post-split)
-    "AVGO": 178.00,   # Broadcom Inc. (post-split)
-    "INTC": 42.00,    # Intel Corporation
-    "QCOM": 208.00,   # QUALCOMM Incorporated
-    "MU": 142.00,     # Micron Technology Inc.
-    "TXN": 202.00,    # Texas Instruments Incorporated
+    "AMD": 155.00,    # Advanced Micro Devices (~$155)
+    "NVDA": 135.00,   # NVIDIA Corporation (post-split ~$135)
+    "AVGO": 172.00,   # Broadcom Inc. (post-split ~$172)
+    "INTC": 35.00,    # Intel Corporation (~$35)
+    "QCOM": 202.00,   # QUALCOMM Incorporated (~$202)
+    "MU": 138.00,     # Micron Technology Inc. (~$138)
+    "TXN": 198.00,    # Texas Instruments Incorporated (~$198)
 
     # Information Technology - Software & Services
-    "MSFT": 445.00,   # Microsoft Corporation
-    "ORCL": 155.00,   # Oracle Corporation
-    "ADBE": 565.00,   # Adobe Inc.
-    "PANW": 342.00,   # Palo Alto Networks Inc.
-    "CRWD": 382.00,   # CrowdStrike Holdings Inc.
-    "SNPS": 585.00,   # Synopsys Inc.
-    "ACN": 328.00,    # Accenture plc
-    "IBM": 194.00,    # International Business Machines
-    "CSCO": 55.00,    # Cisco Systems Inc.
+    "MSFT": 448.00,   # Microsoft Corporation (~$448)
+    "ORCL": 150.00,   # Oracle Corporation (~$150)
+    "ADBE": 555.00,   # Adobe Inc. (~$555)
+    "PANW": 338.00,   # Palo Alto Networks Inc. (~$338)
+    "CRWD": 372.00,   # CrowdStrike Holdings Inc. (~$372)
+    "SNPS": 580.00,   # Synopsys Inc. (~$580)
+    "ACN": 325.00,    # Accenture plc (~$325)
+    "IBM": 188.00,    # International Business Machines (~$188)
+    "CSCO": 54.00,    # Cisco Systems Inc. (~$54)
 
     # Information Technology - Consumer Electronics
     "AAPL": 230.00,   # Apple Inc.

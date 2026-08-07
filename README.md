@@ -113,24 +113,23 @@ Simulates historical performance across the industry-organized dataset and outpu
 Across our full multi-year quantitative sweep over **4,856 insider Form 4 trades** for $1B+ companies spanning **2021 through 2026**, we record the following **highest returns out of all backtests across each strategy category**:
 
 1. **#1 Overall Highest Return Strategy — `COMBINED` (90-Day Holding Period)**:
-   - **Total Return (ROI)**: **+2,256.18%** (`$2,356,180.00` final equity from `$100,000.00` initial capital)
-   - **Win Rate**: **89.63%** (`908 Wins / 105 Losses across 1,013 trades`)
-   - **Profit Factor**: **19.84** | **Estimated Sharpe Ratio**: **3.56**
+   - **Total Return (ROI)**: **+310.04%** (`$410,037.00` final equity from `$100,000.00` initial capital)
+   - **Win Rate**: **67.32%** (`682 Wins / 330 Losses across 1,013 trades`)
+   - **Profit Factor**: **3.13** | **Estimated Sharpe Ratio**: **0.89**
 2. **#1 Best Individual (Non-Combined) Strategy — `INDUSTRY_MOMENTUM` (90 Days)**:
-   - **Total Return (ROI)**: **+2,158.16%** (`$2,258,160.00` final equity across 948 trades)
-   - **Win Rate**: **89.77%** | **Profit Factor**: **20.29** | **Sharpe Ratio**: **3.59**
+   - **Total Return (ROI)**: **+288.14%** (`$388,141.00` final equity across 948 trades)
+   - **Win Rate**: **67.41%** | **Profit Factor**: **3.14** | **Sharpe Ratio**: **0.88**
 3. **#1 Best C-Suite Conviction Strategy — `CONVICTION` (90 Days)**:
-   - **Total Return (ROI)**: **+1,150.70%** (`$1,250,698.00` final equity across 503 trades)
-   - **Win Rate**: **91.45%** | **Sharpe Ratio**: **3.79**
-4. **#1 Highest Risk-Adjusted Sharpe Ratio Strategy — `CSUITE_CLUSTER` (60 Days)**:
-   - **Estimated Sharpe Ratio**: **4.78** | **Win Rate**: **95.83%** | **+45.18% ROI** across elite C-Suite coordinated cluster purchases.
-5. **#1 Best Executive/Director Cluster Buy Strategy — `CLUSTER_BUY` (90 Days)**:
-   - **Total Return (ROI)**: **+446.21%** (`$546,212.00` final equity across 215 trades)
-   - **Win Rate**: **84.65%** | **Sharpe Ratio**: **3.02**
-6. **Individual Deep-Dive Analysis of Top 4 Performing Strategies**:
-   - See [`docs/TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md`](docs/TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md) for individual trade tables, P&L, trigger reasons, and links to SEC EDGAR Form 4 filings and local datasets.
+   - **Total Return (ROI)**: **+151.11%** (`$251,113.00` final equity across 503 trades)
+   - **Win Rate**: **66.00%** | **Sharpe Ratio**: **0.86**
+4. **#1 Best Executive/Director Cluster Buy Strategy — `CLUSTER_BUY` (90 Days)**:
+   - **Total Return (ROI)**: **+91.51%** (`$191,510.00` final equity across 215 trades)
+   - **Win Rate**: **71.63%** | **Sharpe Ratio**: **1.11**
+5. **#1 Best Coordinated C-Suite Cluster Strategy — `CSUITE_CLUSTER` (90 Days)**:
+   - **Total Return (ROI)**: **+4.70%** (`$104,700.00` final equity across elite CEO+CFO simultaneous cluster buys)
+   - **Win Rate**: **66.67%** | **Profit Factor**: **1.92**
 
-For full 25-strategy performance tracking and analysis, see [`docs/FULL_DATASET_BACKTEST_PERFORMANCE.md`](docs/FULL_DATASET_BACKTEST_PERFORMANCE.md) or run `python main.py full-backtest`.
+For full 25-strategy performance tracking and analysis across real historical stock prices, see [`docs/FULL_DATASET_BACKTEST_PERFORMANCE.md`](docs/FULL_DATASET_BACKTEST_PERFORMANCE.md) or run `python main.py full-backtest`.
 
 For complete methodology and strategy documentation, see [`docs/STRATEGIES.md`](docs/STRATEGIES.md).
 

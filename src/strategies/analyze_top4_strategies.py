@@ -250,6 +250,8 @@ if __name__ == "__main__":
     t4 = Top4StrategiesAnalyzer()
     sums = t4.analyze_top4()
     md = t4.generate_markdown_report(sums)
-    with open("docs/TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md", "w", encoding="utf-8") as f:
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    doc_path = os.path.join(root_dir, "docs", "TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md")
+    with open(doc_path, "w", encoding="utf-8") as f:
         f.write(md)
     print("Generated docs/TOP4_STRATEGIES_INDIVIDUAL_ANALYSIS.md successfully!")
