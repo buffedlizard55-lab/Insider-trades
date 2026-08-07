@@ -1,0 +1,14 @@
+{
+  "sector": "Industrials",
+  "industry": "Integrated Freight & Logistics",
+  "industry_slug": "integrated_freight_logistics",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 101,
+  "open_market_buys_count": 18,
+  "open_market_buys_dollar_value": 15513693.0,
+  "open_market_sells_count": 58,
+  "open_market_sells_dollar_value": 42161150.0,
+  "net_dollar_flow": -26647457.0,
+  "buy_sell_dollar_ratio": 0.37
+}

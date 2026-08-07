@@ -1,0 +1,14 @@
+{
+  "sector": "Health Care",
+  "industry": "Health Care Plans",
+  "industry_slug": "health_care_plans",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 100,
+  "open_market_buys_count": 20,
+  "open_market_buys_dollar_value": 13074957.0,
+  "open_market_sells_count": 61,
+  "open_market_sells_dollar_value": 38223779.0,
+  "net_dollar_flow": -25148822.0,
+  "buy_sell_dollar_ratio": 0.34
+}

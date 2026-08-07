@@ -1,0 +1,14 @@
+{
+  "sector": "Health Care",
+  "industry": "Pharmaceuticals",
+  "industry_slug": "pharmaceuticals",
+  "year_filter": "ALL",
+  "total_companies": 4,
+  "total_transactions": 229,
+  "open_market_buys_count": 45,
+  "open_market_buys_dollar_value": 26117576.0,
+  "open_market_sells_count": 129,
+  "open_market_sells_dollar_value": 87441736.0,
+  "net_dollar_flow": -61324160.0,
+  "buy_sell_dollar_ratio": 0.3
+}

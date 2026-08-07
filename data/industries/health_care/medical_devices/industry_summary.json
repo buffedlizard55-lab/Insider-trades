@@ -1,0 +1,14 @@
+{
+  "sector": "Health Care",
+  "industry": "Medical Devices",
+  "industry_slug": "medical_devices",
+  "year_filter": "ALL",
+  "total_companies": 3,
+  "total_transactions": 158,
+  "open_market_buys_count": 27,
+  "open_market_buys_dollar_value": 17787520.0,
+  "open_market_sells_count": 90,
+  "open_market_sells_dollar_value": 62370374.0,
+  "net_dollar_flow": -44582854.0,
+  "buy_sell_dollar_ratio": 0.29
+}

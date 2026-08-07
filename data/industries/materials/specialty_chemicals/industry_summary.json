@@ -1,0 +1,14 @@
+{
+  "sector": "Materials",
+  "industry": "Specialty Chemicals",
+  "industry_slug": "specialty_chemicals",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 99,
+  "open_market_buys_count": 20,
+  "open_market_buys_dollar_value": 12191045.0,
+  "open_market_sells_count": 65,
+  "open_market_sells_dollar_value": 51183055.0,
+  "net_dollar_flow": -38992010.0,
+  "buy_sell_dollar_ratio": 0.24
+}

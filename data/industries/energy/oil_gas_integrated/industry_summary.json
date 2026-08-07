@@ -1,0 +1,14 @@
+{
+  "sector": "Energy",
+  "industry": "Oil & Gas Integrated",
+  "industry_slug": "oil_gas_integrated",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 94,
+  "open_market_buys_count": 14,
+  "open_market_buys_dollar_value": 9278757.0,
+  "open_market_sells_count": 53,
+  "open_market_sells_dollar_value": 37843500.0,
+  "net_dollar_flow": -28564743.0,
+  "buy_sell_dollar_ratio": 0.25
+}

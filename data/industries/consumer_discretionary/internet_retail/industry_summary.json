@@ -1,0 +1,14 @@
+{
+  "sector": "Consumer Discretionary",
+  "industry": "Internet Retail",
+  "industry_slug": "internet_retail",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 116,
+  "open_market_buys_count": 23,
+  "open_market_buys_dollar_value": 14923955.0,
+  "open_market_sells_count": 64,
+  "open_market_sells_dollar_value": 42056706.0,
+  "net_dollar_flow": -27132751.0,
+  "buy_sell_dollar_ratio": 0.35
+}

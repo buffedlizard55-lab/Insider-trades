@@ -1,0 +1,14 @@
+{
+  "sector": "Financials",
+  "industry": "Banks - Diversified",
+  "industry_slug": "banks_diversified",
+  "year_filter": "ALL",
+  "total_companies": 4,
+  "total_transactions": 228,
+  "open_market_buys_count": 66,
+  "open_market_buys_dollar_value": 49268057.0,
+  "open_market_sells_count": 106,
+  "open_market_sells_dollar_value": 77513006.0,
+  "net_dollar_flow": -28244949.0,
+  "buy_sell_dollar_ratio": 0.64
+}

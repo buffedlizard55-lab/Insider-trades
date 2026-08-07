@@ -1,0 +1,14 @@
+{
+  "sector": "Communication Services",
+  "industry": "Telecom Services",
+  "industry_slug": "telecom_services",
+  "year_filter": "ALL",
+  "total_companies": 3,
+  "total_transactions": 159,
+  "open_market_buys_count": 32,
+  "open_market_buys_dollar_value": 23183002.0,
+  "open_market_sells_count": 93,
+  "open_market_sells_dollar_value": 56641500.0,
+  "net_dollar_flow": -33458498.0,
+  "buy_sell_dollar_ratio": 0.41
+}

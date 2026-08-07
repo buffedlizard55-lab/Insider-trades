@@ -1,0 +1,14 @@
+{
+  "sector": "Financials",
+  "industry": "Insurance - Property & Casualty",
+  "industry_slug": "insurance_property_casualty",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 119,
+  "open_market_buys_count": 20,
+  "open_market_buys_dollar_value": 15326464.0,
+  "open_market_sells_count": 70,
+  "open_market_sells_dollar_value": 41412252.0,
+  "net_dollar_flow": -26085788.0,
+  "buy_sell_dollar_ratio": 0.37
+}

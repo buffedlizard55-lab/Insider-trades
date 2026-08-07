@@ -1,0 +1,14 @@
+{
+  "sector": "Utilities",
+  "industry": "Utilities - Regulated Electric",
+  "industry_slug": "utilities_regulated_electric",
+  "year_filter": "ALL",
+  "total_companies": 3,
+  "total_transactions": 172,
+  "open_market_buys_count": 28,
+  "open_market_buys_dollar_value": 20719288.0,
+  "open_market_sells_count": 98,
+  "open_market_sells_dollar_value": 65693594.0,
+  "net_dollar_flow": -44974306.0,
+  "buy_sell_dollar_ratio": 0.32
+}
