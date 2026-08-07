@@ -163,9 +163,14 @@ class BacktestEngine:
         for comp in companies:
             if preloaded_signals is not None and comp.ticker in preloaded_signals:
                 sigs = preloaded_signals[comp.ticker]
+                if year:
+                    sigs = [s for s in sigs if s.date.startswith(str(year))]
             else:
                 if preloaded_trades is not None and comp.ticker in preloaded_trades:
                     df = preloaded_trades[comp.ticker]
+                    if year and "transaction_date" in df.columns:
+                        df["_y"] = pd.to_datetime(df["transaction_date"], errors="coerce").dt.year
+                        df = df[df["_y"] == year].drop(columns=["_y"])
                 else:
                     df = io.get_ticker_trades(comp.ticker, year=year)
                 sigs = self.sg.generate_signals_for_ticker(

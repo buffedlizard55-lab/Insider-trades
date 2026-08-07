@@ -527,6 +527,139 @@ def cmd_analyze_top4(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_forward_test(args: argparse.Namespace) -> int:
+    """
+    Executes walk-forward validation (In-Sample 2021-2024 vs. Out-of-Sample 2025-2026)
+    and displays alpha retention metrics.
+    """
+    from src.strategies.forward_tester import ForwardTestAndPredictor
+
+    print(
+        f"Running Walk-Forward Out-of-Sample Validation across 2021-2026 "
+        f"(Market Cap >= ${args.min_market_cap/1e9:,.1f}B)..."
+    )
+    fwd = ForwardTestAndPredictor(
+        initial_capital=args.initial_capital, min_market_cap=args.min_market_cap
+    )
+    comps = fwd.run_walk_forward_validation()
+    preds = fwd.generate_active_predictions()
+    md = fwd.generate_forward_test_report_markdown(comps, preds)
+
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    doc_path = os.path.join(root_dir, "docs", "FORWARD_TEST_AND_PREDICTIONS_2026.md")
+    with open(doc_path, "w", encoding="utf-8") as f:
+        f.write(md)
+
+    cols = [
+        "strategy_name",
+        "holding_days",
+        "in_sample_trades",
+        "in_sample_win_rate_pct",
+        "in_sample_sharpe",
+        "in_sample_roi_pct",
+        "out_sample_trades",
+        "out_sample_win_rate_pct",
+        "out_sample_sharpe",
+        "out_sample_roi_pct",
+        "alpha_retention_ratio",
+    ]
+    headers = [
+        "Strategy",
+        "Hold (d)",
+        "IS Trades (21-24)",
+        "IS WinRate (%)",
+        "IS Sharpe",
+        "IS ROI (%)",
+        "OOS Trades (25-26)",
+        "OOS WinRate (%)",
+        "OOS Sharpe",
+        "OOS ROI (%)",
+        "Alpha Retent (%)",
+    ]
+
+    df = pd.DataFrame([c.to_dict() for c in comps])
+    print("\n================================================================================")
+    print("      WALK-FORWARD VALIDATION: IN-SAMPLE (2021-24) vs. OUT-OF-SAMPLE (2025-26)")
+    print("================================================================================\n")
+    print(
+        tabulate(
+            df[cols],
+            headers=headers,
+            tablefmt="simple",
+            showindex=False,
+            floatfmt=("", "", "", ".2f", ".2f", ",.1f", "", ".2f", ".2f", ",.1f", ".1f"),
+        )
+    )
+    print("\n================================================================================\n")
+    print(f"Complete Forward Test & Active Predictions report saved to: docs/FORWARD_TEST_AND_PREDICTIONS_2026.md")
+    print(f"Data artifacts saved to: data/forward_test_results.csv | data/active_entry_exit_predictions.csv")
+    return 0
+
+
+def cmd_predict(args: argparse.Namespace) -> int:
+    """
+    Scans recent Form 4 insider transactions to make actionable predictions for
+    potential stock ENTRY and EXIT triggers with price targets and SEC links.
+    """
+    from src.strategies.forward_tester import ForwardTestAndPredictor
+
+    print(
+        f"Scanning recent Form 4 transactions for actionable Stock Entry & Exit Triggers "
+        f"(Market Cap >= ${args.min_market_cap/1e9:,.1f}B, Min Confidence >= {args.min_confidence}%)..."
+    )
+    fwd = ForwardTestAndPredictor(
+        initial_capital=args.initial_capital, min_market_cap=args.min_market_cap
+    )
+    preds = fwd.generate_active_predictions(
+        target_year=args.year, min_confidence=args.min_confidence
+    )
+
+    if not preds:
+        print("No active entry/exit predictions found matching criteria.")
+        return 0
+
+    df = pd.DataFrame([p.to_dict() for p in preds])
+    cols = [
+        "ticker",
+        "action",
+        "trigger_date",
+        "recommended_entry_price",
+        "target_take_profit_price",
+        "target_stop_loss_price",
+        "confidence_score",
+        "expected_alpha_pct",
+        "trigger_reason",
+    ]
+    headers = [
+        "Ticker",
+        "Action",
+        "Date",
+        "Entry Target ($)",
+        "Take-Profit ($)",
+        "Stop-Loss ($)",
+        "Conf (%)",
+        "Exp Alpha (%)",
+        "Trigger Event & Rationale",
+    ]
+
+    print("\n================================================================================")
+    print("       LIVE ACTIONABLE STOCK ENTRY & EXIT PREDICTIONS TABLE (2026)")
+    print("================================================================================\n")
+    print(
+        tabulate(
+            df[cols],
+            headers=headers,
+            tablefmt="simple",
+            showindex=False,
+            floatfmt=("", "", "", ",.2f", ",.2f", ",.2f", "", "+.2f", ""),
+        )
+    )
+    print("\n================================================================================\n")
+    print(f"Total active predictions generated: {len(df)}")
+    print(f"Predictions saved to: data/active_entry_exit_predictions.csv | .json")
+    return 0
+
+
 def cmd_full_backtest(args: argparse.Namespace) -> int:
     """
     Executes and tracks backtest performance across the entire 6-year dataset (2021-2026),
@@ -955,6 +1088,60 @@ def build_parser() -> argparse.ArgumentParser:
         "--output", "-o", type=str, help="Save JSON report for category winners to file"
     )
     p_full.set_defaults(func=cmd_full_backtest)
+
+    # forward-test subcommand (new!)
+    p_fwd = subparsers.add_parser(
+        "forward-test",
+        help="Run Walk-Forward Out-of-Sample Validation (2021-2024 vs 2025-2026)",
+    )
+    p_fwd.add_argument(
+        "--min-market-cap",
+        "-m",
+        type=float,
+        default=1_000_000_000.0,
+        help="Minimum market cap in USD (default: $1B)",
+    )
+    p_fwd.add_argument(
+        "--initial-capital",
+        type=float,
+        default=100000.0,
+        help="Initial portfolio capital ($)",
+    )
+    p_fwd.set_defaults(func=cmd_forward_test)
+
+    # predict subcommand (new!)
+    p_pred = subparsers.add_parser(
+        "predict",
+        help="Scan recent Form 4 trades to predict actionable Stock Entry & Exit triggers with price targets",
+    )
+    p_pred.add_argument(
+        "--year",
+        "-y",
+        type=int,
+        default=2026,
+        help="Target year to scan (default: 2026)",
+    )
+    p_pred.add_argument(
+        "--min-market-cap",
+        "-m",
+        type=float,
+        default=1_000_000_000.0,
+        help="Minimum market cap in USD (default: $1B)",
+    )
+    p_pred.add_argument(
+        "--min-confidence",
+        "-c",
+        type=int,
+        default=70,
+        help="Minimum confidence score (default: 70)",
+    )
+    p_pred.add_argument(
+        "--initial-capital",
+        type=float,
+        default=100000.0,
+        help="Initial portfolio capital ($)",
+    )
+    p_pred.set_defaults(func=cmd_predict)
 
     # analyze-top4 subcommand (new!)
     p_top4 = subparsers.add_parser(
