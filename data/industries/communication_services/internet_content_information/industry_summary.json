@@ -1,0 +1,14 @@
+{
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "industry_slug": "internet_content_information",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 112,
+  "open_market_buys_count": 23,
+  "open_market_buys_dollar_value": 17053470.0,
+  "open_market_sells_count": 63,
+  "open_market_sells_dollar_value": 39962338.0,
+  "net_dollar_flow": -22908868.0,
+  "buy_sell_dollar_ratio": 0.43
+}

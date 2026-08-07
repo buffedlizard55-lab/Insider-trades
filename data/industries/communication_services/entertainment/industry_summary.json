@@ -1,0 +1,14 @@
+{
+  "sector": "Communication Services",
+  "industry": "Entertainment",
+  "industry_slug": "entertainment",
+  "year_filter": "ALL",
+  "total_companies": 3,
+  "total_transactions": 158,
+  "open_market_buys_count": 42,
+  "open_market_buys_dollar_value": 27422807.0,
+  "open_market_sells_count": 77,
+  "open_market_sells_dollar_value": 46172510.0,
+  "net_dollar_flow": -18749703.0,
+  "buy_sell_dollar_ratio": 0.59
+}

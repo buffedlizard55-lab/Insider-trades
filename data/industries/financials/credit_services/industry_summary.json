@@ -1,0 +1,14 @@
+{
+  "sector": "Financials",
+  "industry": "Credit Services",
+  "industry_slug": "credit_services",
+  "year_filter": "ALL",
+  "total_companies": 3,
+  "total_transactions": 167,
+  "open_market_buys_count": 78,
+  "open_market_buys_dollar_value": 54805430.0,
+  "open_market_sells_count": 56,
+  "open_market_sells_dollar_value": 35739467.0,
+  "net_dollar_flow": 19065963.0,
+  "buy_sell_dollar_ratio": 1.53
+}

@@ -1,0 +1,14 @@
+{
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "industry_slug": "aerospace_defense",
+  "year_filter": "ALL",
+  "total_companies": 4,
+  "total_transactions": 223,
+  "open_market_buys_count": 98,
+  "open_market_buys_dollar_value": 65897555.0,
+  "open_market_sells_count": 65,
+  "open_market_sells_dollar_value": 37668973.0,
+  "net_dollar_flow": 28228582.0,
+  "buy_sell_dollar_ratio": 1.75
+}

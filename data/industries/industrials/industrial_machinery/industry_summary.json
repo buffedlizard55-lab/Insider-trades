@@ -1,0 +1,14 @@
+{
+  "sector": "Industrials",
+  "industry": "Industrial Machinery",
+  "industry_slug": "industrial_machinery",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 112,
+  "open_market_buys_count": 26,
+  "open_market_buys_dollar_value": 18513816.0,
+  "open_market_sells_count": 57,
+  "open_market_sells_dollar_value": 41852193.0,
+  "net_dollar_flow": -23338377.0,
+  "buy_sell_dollar_ratio": 0.44
+}

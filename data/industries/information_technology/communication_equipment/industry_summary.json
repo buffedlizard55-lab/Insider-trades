@@ -1,0 +1,14 @@
+{
+  "sector": "Information Technology",
+  "industry": "Communication Equipment",
+  "industry_slug": "communication_equipment",
+  "year_filter": "ALL",
+  "total_companies": 1,
+  "total_transactions": 65,
+  "open_market_buys_count": 10,
+  "open_market_buys_dollar_value": 6716772.0,
+  "open_market_sells_count": 39,
+  "open_market_sells_dollar_value": 22642689.0,
+  "net_dollar_flow": -15925917.0,
+  "buy_sell_dollar_ratio": 0.3
+}

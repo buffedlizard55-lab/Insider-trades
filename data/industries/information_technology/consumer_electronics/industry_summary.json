@@ -1,0 +1,14 @@
+{
+  "sector": "Information Technology",
+  "industry": "Consumer Electronics",
+  "industry_slug": "consumer_electronics",
+  "year_filter": "ALL",
+  "total_companies": 1,
+  "total_transactions": 78,
+  "open_market_buys_count": 41,
+  "open_market_buys_dollar_value": 30832910.0,
+  "open_market_sells_count": 17,
+  "open_market_sells_dollar_value": 12018431.0,
+  "net_dollar_flow": 18814479.0,
+  "buy_sell_dollar_ratio": 2.57
+}

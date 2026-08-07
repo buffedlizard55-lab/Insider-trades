@@ -1,0 +1,14 @@
+{
+  "sector": "Energy",
+  "industry": "Oil & Gas Equipment",
+  "industry_slug": "oil_gas_equipment",
+  "year_filter": "ALL",
+  "total_companies": 1,
+  "total_transactions": 50,
+  "open_market_buys_count": 10,
+  "open_market_buys_dollar_value": 7568000.0,
+  "open_market_sells_count": 26,
+  "open_market_sells_dollar_value": 23898832.0,
+  "net_dollar_flow": -16330832.0,
+  "buy_sell_dollar_ratio": 0.32
+}

@@ -1,0 +1,14 @@
+{
+  "sector": "Real Estate",
+  "industry": "REIT - Telecom Tower",
+  "industry_slug": "reit_telecom_tower",
+  "year_filter": "ALL",
+  "total_companies": 1,
+  "total_transactions": 58,
+  "open_market_buys_count": 12,
+  "open_market_buys_dollar_value": 7588108.0,
+  "open_market_sells_count": 33,
+  "open_market_sells_dollar_value": 21498903.0,
+  "net_dollar_flow": -13910795.0,
+  "buy_sell_dollar_ratio": 0.35
+}

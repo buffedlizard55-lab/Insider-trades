@@ -1,0 +1,36 @@
+sector,industry,industry_slug,year_filter,total_companies,total_transactions,open_market_buys_count,open_market_buys_dollar_value,open_market_sells_count,open_market_sells_dollar_value,net_dollar_flow,buy_sell_dollar_ratio
+Information Technology,Consumer Electronics,consumer_electronics,ALL,1,78,41,30832910.0,17,12018431.0,18814479.0,2.57
+Information Technology,Semiconductors,semiconductors,ALL,7,377,176,124189127.0,106,58747726.0,65441401.0,2.11
+Industrials,Aerospace & Defense,aerospace_defense,ALL,4,223,98,65897555.0,65,37668973.0,28228582.0,1.75
+Financials,Credit Services,credit_services,ALL,3,167,78,54805430.0,56,35739467.0,19065963.0,1.53
+Information Technology,Software - Infrastructure,software_infrastructure,ALL,6,350,160,111997697.0,104,74031182.0,37966515.0,1.51
+Health Care,Biotechnology,biotechnology,ALL,5,260,102,70011297.0,91,61012355.0,8998942.0,1.15
+Consumer Discretionary,Automotive,automotive,ALL,3,168,65,56473493.0,73,52325987.0,4147506.0,1.08
+Financials,Banks - Diversified,banks_diversified,ALL,4,228,66,49268057.0,106,77513006.0,-28244949.0,0.64
+Communication Services,Entertainment,entertainment,ALL,3,158,42,27422807.0,77,46172510.0,-18749703.0,0.59
+Consumer Discretionary,Home Improvement Retail,home_improvement_retail,ALL,2,108,23,14043079.0,53,31753366.0,-17710287.0,0.44
+Industrials,Industrial Machinery,industrial_machinery,ALL,2,112,26,18513816.0,57,41852193.0,-23338377.0,0.44
+Financials,Capital Markets,capital_markets,ALL,3,154,26,20799629.0,73,47391700.0,-26592071.0,0.44
+Materials,Copper & Metals,copper_metals,ALL,1,52,10,8058871.0,27,18586695.0,-10527824.0,0.43
+Consumer Staples,Household & Personal Products,household_personal_products,ALL,2,91,17,16069063.0,56,37081877.0,-21012814.0,0.43
+Communication Services,Internet Content & Information,internet_content_information,ALL,2,112,23,17053470.0,63,39962338.0,-22908868.0,0.43
+Information Technology,IT Services,it_services,ALL,2,102,25,10468281.0,48,25570361.0,-15102080.0,0.41
+Communication Services,Telecom Services,telecom_services,ALL,3,159,32,23183002.0,93,56641500.0,-33458498.0,0.41
+Consumer Staples,Beverages - Non-Alcoholic,beverages_non_alcoholic,ALL,2,109,21,15178344.0,63,39659050.0,-24480706.0,0.38
+Financials,Insurance - Property & Casualty,insurance_property_casualty,ALL,2,119,20,15326464.0,70,41412252.0,-26085788.0,0.37
+Industrials,Integrated Freight & Logistics,integrated_freight_logistics,ALL,2,101,18,15513693.0,58,42161150.0,-26647457.0,0.37
+Real Estate,REIT - Industrial,reit_industrial,ALL,1,56,11,8295227.0,37,22931953.0,-14636726.0,0.36
+Energy,Oil & Gas E&P,oil_gas_ep,ALL,2,107,19,15693640.0,64,43166893.0,-27473253.0,0.36
+Real Estate,REIT - Telecom Tower,reit_telecom_tower,ALL,1,58,12,7588108.0,33,21498903.0,-13910795.0,0.35
+Real Estate,REIT - Retail,reit_retail,ALL,1,54,10,7774457.0,29,22231073.0,-14456616.0,0.35
+Consumer Discretionary,Internet Retail,internet_retail,ALL,2,116,23,14923955.0,64,42056706.0,-27132751.0,0.35
+Health Care,Health Care Plans,health_care_plans,ALL,2,100,20,13074957.0,61,38223779.0,-25148822.0,0.34
+Consumer Staples,Discount Stores,discount_stores,ALL,3,175,26,22360345.0,103,68706227.0,-46345882.0,0.33
+Energy,Oil & Gas Equipment,oil_gas_equipment,ALL,1,50,10,7568000.0,26,23898832.0,-16330832.0,0.32
+Utilities,Utilities - Regulated Electric,utilities_regulated_electric,ALL,3,172,28,20719288.0,98,65693594.0,-44974306.0,0.32
+Information Technology,Communication Equipment,communication_equipment,ALL,1,65,10,6716772.0,39,22642689.0,-15925917.0,0.3
+Health Care,Pharmaceuticals,pharmaceuticals,ALL,4,229,45,26117576.0,129,87441736.0,-61324160.0,0.3
+Health Care,Medical Devices,medical_devices,ALL,3,158,27,17787520.0,90,62370374.0,-44582854.0,0.29
+Energy,Oil & Gas Integrated,oil_gas_integrated,ALL,2,94,14,9278757.0,53,37843500.0,-28564743.0,0.25
+Materials,Specialty Chemicals,specialty_chemicals,ALL,2,99,20,12191045.0,65,51183055.0,-38992010.0,0.24
+Consumer Discretionary,Restaurants,restaurants,ALL,2,95,15,7357740.0,59,40158782.0,-32801042.0,0.18

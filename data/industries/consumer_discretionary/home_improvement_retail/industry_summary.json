@@ -1,0 +1,14 @@
+{
+  "sector": "Consumer Discretionary",
+  "industry": "Home Improvement Retail",
+  "industry_slug": "home_improvement_retail",
+  "year_filter": "ALL",
+  "total_companies": 2,
+  "total_transactions": 108,
+  "open_market_buys_count": 23,
+  "open_market_buys_dollar_value": 14043079.0,
+  "open_market_sells_count": 53,
+  "open_market_sells_dollar_value": 31753366.0,
+  "net_dollar_flow": -17710287.0,
+  "buy_sell_dollar_ratio": 0.44
+}

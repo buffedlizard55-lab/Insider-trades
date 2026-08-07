@@ -1,0 +1,90 @@
+ticker,company_name,cik,exchange,sector,industry,industry_slug,market_cap,in_sp500,in_nasdaq100
+NVDA,NVIDIA Corporation,0001045810,NASDAQ,Information Technology,Semiconductors,semiconductors,3150000000000,True,True
+AVGO,Broadcom Inc.,0001441634,NASDAQ,Information Technology,Semiconductors,semiconductors,780000000000,True,True
+AMD,Advanced Micro Devices Inc.,0000002488,NASDAQ,Information Technology,Semiconductors,semiconductors,260000000000,True,True
+INTC,Intel Corporation,0000050863,NASDAQ,Information Technology,Semiconductors,semiconductors,135000000000,True,True
+QCOM,QUALCOMM Incorporated,0000804328,NASDAQ,Information Technology,Semiconductors,semiconductors,220000000000,True,True
+MU,Micron Technology Inc.,0000072333,NASDAQ,Information Technology,Semiconductors,semiconductors,145000000000,True,True
+TXN,Texas Instruments Incorporated,0000097476,NASDAQ,Information Technology,Semiconductors,semiconductors,185000000000,True,True
+MSFT,Microsoft Corporation,0000789019,NASDAQ,Information Technology,Software - Infrastructure,software_infrastructure,3200000000000,True,True
+ORCL,Oracle Corporation,0001341439,NYSE,Information Technology,Software - Infrastructure,software_infrastructure,385000000000,True,False
+ADBE,Adobe Inc.,0000796343,NASDAQ,Information Technology,Software - Infrastructure,software_infrastructure,240000000000,True,True
+PANW,Palo Alto Networks Inc.,0001326801,NASDAQ,Information Technology,Software - Infrastructure,software_infrastructure,110000000000,True,True
+CRWD,CrowdStrike Holdings Inc.,0001535527,NASDAQ,Information Technology,Software - Infrastructure,software_infrastructure,95000000000,True,True
+SNPS,Synopsys Inc.,0000883241,NASDAQ,Information Technology,Software - Infrastructure,software_infrastructure,85000000000,True,True
+AAPL,Apple Inc.,0000320193,NASDAQ,Information Technology,Consumer Electronics,consumer_electronics,3450000000000,True,True
+ACN,Accenture plc,0001467373,NYSE,Information Technology,IT Services,it_services,210000000000,True,False
+IBM,International Business Machines Corporation,0000051143,NYSE,Information Technology,IT Services,it_services,175000000000,True,False
+CSCO,Cisco Systems Inc.,0000023217,NASDAQ,Information Technology,Communication Equipment,communication_equipment,195000000000,True,True
+LLY,Eli Lilly and Company,0000059478,NYSE,Health Care,Pharmaceuticals,pharmaceuticals,820000000000,True,False
+JNJ,Johnson & Johnson,0000200406,NYSE,Health Care,Pharmaceuticals,pharmaceuticals,380000000000,True,False
+PFE,Pfizer Inc.,0000078003,NYSE,Health Care,Pharmaceuticals,pharmaceuticals,165000000000,True,False
+MRK,Merck & Co. Inc.,0000310158,NYSE,Health Care,Pharmaceuticals,pharmaceuticals,320000000000,True,False
+AMGN,Amgen Inc.,0000031462,NASDAQ,Health Care,Biotechnology,biotechnology,170000000000,True,True
+GILD,Gilead Sciences Inc.,0000882095,NASDAQ,Health Care,Biotechnology,biotechnology,95000000000,True,True
+VRTX,Vertex Pharmaceuticals Incorporated,0000875320,NASDAQ,Health Care,Biotechnology,biotechnology,125000000000,True,True
+REGN,Regeneron Pharmaceuticals Inc.,0000872589,NASDAQ,Health Care,Biotechnology,biotechnology,105000000000,True,True
+MRNA,Moderna Inc.,0001682852,NASDAQ,Health Care,Biotechnology,biotechnology,45000000000,True,True
+UNH,UnitedHealth Group Incorporated,0000731766,NYSE,Health Care,Health Care Plans,health_care_plans,460000000000,True,False
+ELV,Elevance Health Inc.,0001156039,NYSE,Health Care,Health Care Plans,health_care_plans,115000000000,True,False
+ABT,Abbott Laboratories,0000001800,NYSE,Health Care,Medical Devices,medical_devices,185000000000,True,False
+MDT,Medtronic plc,0000143899,NYSE,Health Care,Medical Devices,medical_devices,105000000000,True,False
+SYK,Stryker Corporation,0000310764,NYSE,Health Care,Medical Devices,medical_devices,130000000000,True,False
+JPM,JPMorgan Chase & Co.,0000019617,NYSE,Financials,Banks - Diversified,banks_diversified,580000000000,True,False
+BAC,Bank of America Corporation,0000070858,NYSE,Financials,Banks - Diversified,banks_diversified,310000000000,True,False
+WFC,Wells Fargo & Company,0000072971,NYSE,Financials,Banks - Diversified,banks_diversified,205000000000,True,False
+C,Citigroup Inc.,0000831001,NYSE,Financials,Banks - Diversified,banks_diversified,125000000000,True,False
+GS,The Goldman Sachs Group Inc.,0000886982,NYSE,Financials,Capital Markets,capital_markets,155000000000,True,False
+MS,Morgan Stanley,0000895421,NYSE,Financials,Capital Markets,capital_markets,160000000000,True,False
+SCHW,The Charles Schwab Corporation,0000316709,NYSE,Financials,Capital Markets,capital_markets,135000000000,True,False
+V,Visa Inc.,0001403161,NYSE,Financials,Credit Services,credit_services,540000000000,True,False
+MA,Mastercard Incorporated,0001141391,NYSE,Financials,Credit Services,credit_services,440000000000,True,False
+AXP,American Express Company,0000004962,NYSE,Financials,Credit Services,credit_services,170000000000,True,False
+PGR,The Progressive Corporation,0000080661,NYSE,Financials,Insurance - Property & Casualty,insurance_property_casualty,125000000000,True,False
+CB,Chubb Limited,0001559720,NYSE,Financials,Insurance - Property & Casualty,insurance_property_casualty,105000000000,True,False
+TSLA,Tesla Inc.,0001318605,NASDAQ,Consumer Discretionary,Automotive,automotive,750000000000,True,True
+F,Ford Motor Company,0000037996,NYSE,Consumer Discretionary,Automotive,automotive,48000000000,True,False
+GM,General Motors Company,0001467858,NYSE,Consumer Discretionary,Automotive,automotive,52000000000,True,False
+AMZN,Amazon.com Inc.,0001018724,NASDAQ,Consumer Discretionary,Internet Retail,internet_retail,1950000000000,True,True
+EBAY,eBay Inc.,0001065088,NASDAQ,Consumer Discretionary,Internet Retail,internet_retail,27000000000,True,True
+HD,The Home Depot Inc.,0000354950,NYSE,Consumer Discretionary,Home Improvement Retail,home_improvement_retail,360000000000,True,False
+LOW,Lowe's Companies Inc.,0000060667,NYSE,Consumer Discretionary,Home Improvement Retail,home_improvement_retail,130000000000,True,False
+MCD,McDonald's Corporation,0000063908,NYSE,Consumer Discretionary,Restaurants,restaurants,185000000000,True,False
+SBUX,Starbucks Corporation,0000829224,NASDAQ,Consumer Discretionary,Restaurants,restaurants,88000000000,True,True
+GOOGL,Alphabet Inc.,0001652044,NASDAQ,Communication Services,Internet Content & Information,internet_content_information,2100000000000,True,True
+META,Meta Platforms Inc.,0001326801,NASDAQ,Communication Services,Internet Content & Information,internet_content_information,1250000000000,True,True
+NFLX,Netflix Inc.,0001065280,NASDAQ,Communication Services,Entertainment,entertainment,280000000000,True,True
+DIS,The Walt Disney Company,0001744489,NYSE,Communication Services,Entertainment,entertainment,180000000000,True,False
+CMCSA,Comcast Corporation,0001166691,NASDAQ,Communication Services,Entertainment,entertainment,155000000000,True,True
+T,AT&T Inc.,0000007323,NYSE,Communication Services,Telecom Services,telecom_services,135000000000,True,False
+VZ,Verizon Communications Inc.,0000732712,NYSE,Communication Services,Telecom Services,telecom_services,170000000000,True,False
+TMUS,T-Mobile US Inc.,0001283699,NASDAQ,Communication Services,Telecom Services,telecom_services,205000000000,True,True
+BA,The Boeing Company,0000012927,NYSE,Industrials,Aerospace & Defense,aerospace_defense,115000000000,True,False
+RTX,RTX Corporation,0000101829,NYSE,Industrials,Aerospace & Defense,aerospace_defense,140000000000,True,False
+LMT,Lockheed Martin Corporation,0000936468,NYSE,Industrials,Aerospace & Defense,aerospace_defense,112000000000,True,False
+GE,General Electric Company,0000040545,NYSE,Industrials,Aerospace & Defense,aerospace_defense,180000000000,True,False
+UPS,United Parcel Service Inc.,0001090727,NYSE,Industrials,Integrated Freight & Logistics,integrated_freight_logistics,118000000000,True,False
+FDX,FedEx Corporation,0000036104,NYSE,Industrials,Integrated Freight & Logistics,integrated_freight_logistics,72000000000,True,False
+CAT,Caterpillar Inc.,0000018230,NYSE,Industrials,Industrial Machinery,industrial_machinery,165000000000,True,False
+DE,Deere & Company,0000315189,NYSE,Industrials,Industrial Machinery,industrial_machinery,110000000000,True,False
+PG,The Procter & Gamble Company,0000080424,NYSE,Consumer Staples,Household & Personal Products,household_personal_products,395000000000,True,False
+CL,Colgate-Palmolive Company,0000021665,NYSE,Consumer Staples,Household & Personal Products,household_personal_products,78000000000,True,False
+KO,The Coca-Cola Company,0000021344,NYSE,Consumer Staples,Beverages - Non-Alcoholic,beverages_non_alcoholic,285000000000,True,False
+PEP,PepsiCo Inc.,0000077476,NASDAQ,Consumer Staples,Beverages - Non-Alcoholic,beverages_non_alcoholic,230000000000,True,True
+WMT,Walmart Inc.,0000104169,NYSE,Consumer Staples,Discount Stores,discount_stores,550000000000,True,False
+COST,Costco Wholesale Corporation,0000909832,NASDAQ,Consumer Staples,Discount Stores,discount_stores,365000000000,True,True
+TGT,Target Corporation,0000027419,NYSE,Consumer Staples,Discount Stores,discount_stores,65000000000,True,False
+XOM,Exxon Mobil Corporation,0000034088,NYSE,Energy,Oil & Gas Integrated,oil_gas_integrated,450000000000,True,False
+CVX,Chevron Corporation,0000093410,NYSE,Energy,Oil & Gas Integrated,oil_gas_integrated,280000000000,True,False
+COP,ConocoPhillips,0001163165,NYSE,Energy,Oil & Gas E&P,oil_gas_ep,135000000000,True,False
+EOG,EOG Resources Inc.,0000821189,NYSE,Energy,Oil & Gas E&P,oil_gas_ep,75000000000,True,False
+SLB,Schlumberger Limited,0000087347,NYSE,Energy,Oil & Gas Equipment,oil_gas_equipment,68000000000,True,False
+NEE,NextEra Energy Inc.,0000753308,NYSE,Utilities,Utilities - Regulated Electric,utilities_regulated_electric,145000000000,True,False
+DUK,Duke Energy Corporation,0001326160,NYSE,Utilities,Utilities - Regulated Electric,utilities_regulated_electric,85000000000,True,False
+SO,The Southern Company,0000092122,NYSE,Utilities,Utilities - Regulated Electric,utilities_regulated_electric,88000000000,True,False
+PLD,Prologis Inc.,0001045609,NYSE,Real Estate,REIT - Industrial,reit_industrial,115000000000,True,False
+AMT,American Tower Corporation,0001053507,NYSE,Real Estate,REIT - Telecom Tower,reit_telecom_tower,95000000000,True,False
+SPG,Simon Property Group Inc.,0000906345,NYSE,Real Estate,REIT - Retail,reit_retail,55000000000,True,False
+LIN,Linde plc,0001707925,NYSE,Materials,Specialty Chemicals,specialty_chemicals,215000000000,True,False
+SHW,The Sherwin-Williams Company,0000089800,NYSE,Materials,Specialty Chemicals,specialty_chemicals,82000000000,True,False
+FCX,Freeport-McMoRan Inc.,0000831259,NYSE,Materials,Copper & Metals,copper_metals,70000000000,True,False

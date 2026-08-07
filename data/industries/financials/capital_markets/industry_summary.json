@@ -1,0 +1,14 @@
+{
+  "sector": "Financials",
+  "industry": "Capital Markets",
+  "industry_slug": "capital_markets",
+  "year_filter": "ALL",
+  "total_companies": 3,
+  "total_transactions": 154,
+  "open_market_buys_count": 26,
+  "open_market_buys_dollar_value": 20799629.0,
+  "open_market_sells_count": 73,
+  "open_market_sells_dollar_value": 47391700.0,
+  "net_dollar_flow": -26592071.0,
+  "buy_sell_dollar_ratio": 0.44
+}
