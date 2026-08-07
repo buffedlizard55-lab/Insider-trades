@@ -421,8 +421,13 @@ class BacktestEngine:
     @staticmethod
     def _simulated_price(ticker: str, date_str: str) -> float:
         """Generates a reproducible realistic stock price for a ticker and date."""
+        from src.universe.price_profiles import get_baseline_price
+
+        base = get_baseline_price(ticker, 150.0)
         h = int(hashlib.md5(f"{ticker}_{date_str}".encode()).hexdigest()[:8], 16)
-        price = 80.0 + (h % 20000) / 100.0
+        # Variation around baseline: -5% to +5%
+        variation = (h % 1000 - 500) / 10000.0  # -0.05 to +0.05
+        price = base * (1.0 + variation)
         return round(price, 2)
 
     @staticmethod

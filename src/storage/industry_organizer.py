@@ -419,7 +419,9 @@ class IndustryOrganizer:
                         0
                     ]
 
-                price = round(random.uniform(50.0, 450.0), 2)
+                from src.universe.price_profiles import get_baseline_price
+                base_p = get_baseline_price(comp.ticker, 150.0)
+                price = round(base_p * random.uniform(0.92, 1.08), 2)
                 shares = random.randint(5, 50) * 100
                 total_val = round(shares * price, 2)
                 acq_disp = "A" if code in ("P", "A", "M") else "D"
@@ -460,7 +462,8 @@ class IndustryOrganizer:
                     ("Chief Financial Officer", "CFO_Conviction"),
                 ]:
                     shares = 5000
-                    price = round(random.uniform(100.0, 250.0), 2)
+                    base_p = get_baseline_price(comp.ticker, 150.0)
+                    price = round(base_p * random.uniform(0.95, 1.05), 2)
                     yr_short = str(year)[-2:]
                     company_trades.append(
                         {
