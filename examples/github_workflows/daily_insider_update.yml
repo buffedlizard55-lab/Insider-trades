@@ -51,7 +51,7 @@ jobs:
         run: python main.py forward-test
 
       - name: Rebuild GitHub Pages dashboard data
-        run: python main.py build-site
+        run: python main.py build-site --mirror-root
 
       - name: Regenerate industry sentiment heatmap
         run: python main.py heatmap --days 90 --format markdown > DAILY_HEATMAP_REPORT.md

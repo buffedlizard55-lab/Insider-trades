@@ -801,8 +801,12 @@ def cmd_build_site(args: argparse.Namespace) -> int:
     from src.strategies.site_builder import build_site_data
 
     print("Building GitHub Pages dashboard data from latest artifacts...")
-    summary = build_site_data(out_dir=args.out)
+    summary = build_site_data(out_dir=args.out, mirror_root=args.mirror_root)
     print(f"Dashboard data written to: {summary['output_dir']}")
+    if summary.get("mirrored_to_root"):
+        print("Mirrored dashboard to repo root for live Pages serving:")
+        for rel in summary["mirrored_to_root"]:
+            print(f"  - {rel}")
     for key, counts in summary["strategies"].items():
         print(
             f"  {key:<18} trades={counts['trades']:>5}  active_entries={counts['active']:>3}"
@@ -1274,6 +1278,11 @@ def build_parser() -> argparse.ArgumentParser:
         type=str,
         default=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site", "data"),
         help="Output directory for dashboard JSON files (default: site/data)",
+    )
+    p_site.add_argument(
+        "--mirror-root",
+        action="store_true",
+        help="Also mirror the dashboard to the repo root (for root-based GitHub Pages serving)",
     )
     p_site.set_defaults(func=cmd_build_site)
 

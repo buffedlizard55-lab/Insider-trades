@@ -49,7 +49,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Rebuild dashboard data (fresh timestamps + counts)
-        run: python main.py build-site
+        run: python main.py build-site --mirror-root
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

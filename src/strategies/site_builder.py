@@ -182,10 +182,15 @@ def _entry_mix(trades: List[Dict[str, Any]]) -> Dict[str, int]:
 
 
 def build_site_data(
-    data_dir: str = None, out_dir: str = None
+    data_dir: str = None, out_dir: str = None, mirror_root: bool = False
 ) -> Dict[str, Any]:
     """
     Builds the dashboard JSON payloads and writes them to out_dir.
+
+    If mirror_root is True, also copies the dashboard's static files
+    (index.html, styles.css, js/, data JSONs) to the repository root so the
+    currently-enabled GitHub Pages setup (which serves the repo root of main)
+    publishes the dashboard without needing admin Pages settings.
 
     Returns a summary dict of what was written (also used by tests).
     """
@@ -265,7 +270,41 @@ def build_site_data(
 
     summary["meta"] = meta
     summary["output_dir"] = out_dir
+
+    # Mirror the dashboard to the repository root for root-based Pages serving
+    if mirror_root:
+        site_dir = os.path.join(ROOT_DIR, "site")
+        mirrored: List[str] = []
+        for rel in ("index.html", "styles.css", "js/app.js"):
+            _copy_if_changed(os.path.join(site_dir, rel), os.path.join(ROOT_DIR, rel), mirrored)
+        for name in ("meta.json", "strategies.json", "combined.json", "industry_momentum.json", "conviction.json"):
+            _copy_if_changed(
+                os.path.join(out_dir, name),
+                os.path.join(ROOT_DIR, "data", name),
+                mirrored,
+            )
+        summary["mirrored_to_root"] = mirrored
+
     return summary
+
+
+def _copy_if_changed(src: str, dst: str, copied: List[str]) -> None:
+    """Copies src -> dst only when content differs (keeps git history clean)."""
+    if not os.path.exists(src):
+        return
+    try:
+        with open(src, "rb") as f:
+            new_bytes = f.read()
+        if os.path.exists(dst):
+            with open(dst, "rb") as f:
+                if f.read() == new_bytes:
+                    return
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        with open(dst, "wb") as f:
+            f.write(new_bytes)
+        copied.append(os.path.relpath(dst, ROOT_DIR))
+    except OSError:
+        return
 
 
 if __name__ == "__main__":

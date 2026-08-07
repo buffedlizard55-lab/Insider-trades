@@ -169,18 +169,17 @@ python main.py update --all          # 1. Re-pull the latest public insider trad
 python main.py full-backtest         # 2. Refresh the full-dataset backtest & ROI tracker
 python main.py analyze-top4          # 3. Refresh the Top-4 strategy trade logs
 python main.py forward-test          # 4. Refresh forward tests & active entry/exit predictions
-python main.py build-site            # 5. Rebuild the dashboard data (site/data/*.json)
+python main.py build-site --mirror-root   # 5. Rebuild dashboard data + sync the live root copy
 git add data/ site/ docs/ && git commit -m "chore(data): refresh insider trades & dashboard"
 git push                             # 6. Push — GitHub Pages rebuilds the site automatically
 ```
 
-> **To publish the dashboard (2 clicks)**: GitHub → *Settings → Pages → Build and deployment
-> source → Deploy from a branch* → branch **`main`**, folder **`/site`** → *Save*. The dashboard
-> goes live at `https://buffedlizard55-lab.github.io/Insider-trades/` and GitHub rebuilds it
-> automatically on every push. (Prefer GitHub Actions as the source instead? Copy
-> [`examples/github_workflows/deploy_pages.yml`](examples/github_workflows/deploy_pages.yml) into
-> `.github/workflows/` and select *Source: GitHub Actions* — this needs a GitHub account/token with
-> **workflows** permission to push the file.)
+> **Live now**: this repository’s GitHub Pages is enabled and serves the repo root of `main`,
+> so the dashboard is published at `https://buffedlizard55-lab.github.io/Insider-trades/`.
+> `python main.py build-site --mirror-root` keeps the root copy in sync on every refresh.
+> (Optional: to serve only the clean `site/` folder instead, set *Settings → Pages → Deploy from a
+> branch → main / /site* — or use [`examples/github_workflows/deploy_pages.yml`](examples/github_workflows/deploy_pages.yml)
+> with *Source: GitHub Actions*.)
 
 ---
 
@@ -267,6 +266,10 @@ python main.py collect --year 2025 --min-market-cap 1000000000
 # Regenerate the dashboard payloads (site/data/*.json) from the latest
 # backtest tracker, trade logs and active predictions
 python main.py build-site
+
+# Also mirror the dashboard to the repo root so the live Pages site
+# (served from the repo root of main) updates with the refresh
+python main.py build-site --mirror-root
 ```
 
 ---
