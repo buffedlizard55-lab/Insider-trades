@@ -10,10 +10,10 @@ Each section begins with the best performing strategy, displaying easy-to-read t
 
 | Rank | Strategy Name | Holding Period | Trades | Win Rate (%) | Profit Factor | Sharpe Ratio | Max Drawdown (%) | Total Return (%) | Final Equity ($) |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **#1** | **COMBINED (Cluster + Conviction)** | **90 Days** | 1,013 | **66.83%** | 2.98 | **0.86** | 33.22% | **292.13%** | **$392,126.00** |
-| **#2** | **INDUSTRY_MOMENTUM** | **90 Days** | 948 | **66.88%** | 2.98 | **0.86** | 32.78% | **270.20%** | **$370,201.00** |
-| **#3** | **CONVICTION (C-Suite CEO/CFO)** | **90 Days** | 503 | **65.61%** | 2.80 | **0.83** | 24.60% | **144.48%** | **$244,480.00** |
-| **#4** | **CLUSTER_BUY (Exec/Director)** | **90 Days** | 215 | **70.70%** | 3.90 | **1.06** | 12.31% | **84.38%** | **$184,379.00** |
+| **#1** | **COMBINED (Cluster + Conviction)** | **90 Days** | 1,013 | **68.90%** | 3.29 | **0.93** | 33.22% | **329.13%** | **$429,134.00** |
+| **#2** | **INDUSTRY_MOMENTUM** | **90 Days** | 948 | **69.09%** | 3.32 | **0.93** | 32.78% | **307.21%** | **$407,209.00** |
+| **#3** | **CONVICTION (C-Suite CEO/CFO)** | **90 Days** | 503 | **67.59%** | 3.05 | **0.90** | 24.60% | **160.42%** | **$260,420.00** |
+| **#4** | **CLUSTER_BUY (Exec/Director)** | **90 Days** | 215 | **75.35%** | 4.62 | **1.20** | 12.31% | **99.97%** | **$199,968.00** |
 
 ---
 

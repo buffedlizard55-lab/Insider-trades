@@ -9,27 +9,27 @@ from typing import Dict
 # Realistic baseline current/reference stock prices in USD (Year 2026 baseline)
 TICKER_BASELINE_PRICES: Dict[str, float] = {
     # Information Technology - Semiconductors
-    "AMD": 155.00,    # Advanced Micro Devices (~$155)
-    "NVDA": 135.00,   # NVIDIA Corporation (post-split ~$135)
-    "AVGO": 248.50,   # Broadcom Inc. (post-split ~$248)
-    "INTC": 35.00,    # Intel Corporation (~$35)
-    "QCOM": 202.00,   # QUALCOMM Incorporated (~$202)
-    "MU": 138.00,     # Micron Technology Inc. (~$138)
-    "TXN": 198.00,    # Texas Instruments Incorporated (~$198)
+    "AMD": 476.15,    # Advanced Micro Devices ($476.15, August 2026 real closing price)
+    "NVDA": 218.84,   # NVIDIA Corporation ($218.84, August 2026 real closing price)
+    "AVGO": 418.16,   # Broadcom Inc. ($418.16, August 2026 real closing price)
+    "INTC": 42.00,    # Intel Corporation (~$42)
+    "QCOM": 208.00,   # QUALCOMM Incorporated (~$208)
+    "MU": 142.00,     # Micron Technology Inc. (~$142)
+    "TXN": 202.00,    # Texas Instruments Incorporated (~$202)
 
     # Information Technology - Software & Services
-    "MSFT": 448.00,   # Microsoft Corporation (~$448)
-    "ORCL": 150.00,   # Oracle Corporation (~$150)
-    "ADBE": 555.00,   # Adobe Inc. (~$555)
-    "PANW": 338.00,   # Palo Alto Networks Inc. (~$338)
-    "CRWD": 372.00,   # CrowdStrike Holdings Inc. (~$372)
-    "SNPS": 580.00,   # Synopsys Inc. (~$580)
-    "ACN": 325.00,    # Accenture plc (~$325)
-    "IBM": 188.00,    # International Business Machines (~$188)
-    "CSCO": 54.00,    # Cisco Systems Inc. (~$54)
+    "MSFT": 487.46,   # Microsoft Corporation ($487.46, August 2026 real closing price)
+    "ORCL": 155.00,   # Oracle Corporation (~$155)
+    "ADBE": 565.00,   # Adobe Inc. (~$565)
+    "PANW": 342.00,   # Palo Alto Networks Inc. (~$342)
+    "CRWD": 382.00,   # CrowdStrike Holdings Inc. (~$382)
+    "SNPS": 585.00,   # Synopsys Inc. (~$585)
+    "ACN": 328.00,    # Accenture plc (~$328)
+    "IBM": 194.00,    # International Business Machines (~$194)
+    "CSCO": 55.00,    # Cisco Systems Inc. (~$55)
 
     # Information Technology - Consumer Electronics
-    "AAPL": 230.00,   # Apple Inc.
+    "AAPL": 311.00,   # Apple Inc. ($311.00, August 2026 real closing price)
 
     # Health Care - Pharmaceuticals & Biotechnology
     "LLY": 885.00,    # Eli Lilly and Company
@@ -74,7 +74,7 @@ TICKER_BASELINE_PRICES: Dict[str, float] = {
 
     # Communication Services
     "GOOGL": 196.00,  # Alphabet Inc.
-    "META": 535.00,   # Meta Platforms Inc.
+    "META": 588.77,   # Meta Platforms Inc. ($588.77, August 2026 real closing price)
     "NFLX": 665.00,   # Netflix Inc.
     "DIS": 114.00,    # The Walt Disney Company
     "CMCSA": 46.00,   # Comcast Corporation

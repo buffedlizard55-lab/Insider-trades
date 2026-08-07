@@ -5,12 +5,12 @@
     "stop_loss_pct":12.0,
     "take_profit_pct":40.0,
     "total_trades":1013,
-    "win_rate_pct":66.8311944719,
-    "profit_factor":2.9823161381,
-    "sharpe_ratio":0.86,
+    "win_rate_pct":68.9042448174,
+    "profit_factor":3.292131232,
+    "sharpe_ratio":0.93,
     "max_drawdown_pct":33.2238273105,
-    "total_return_pct":292.126,
-    "final_equity":392126.0
+    "total_return_pct":329.134,
+    "final_equity":429134.0
   },
   {
     "strategy":"INDUSTRY_MOMENTUM",
@@ -18,12 +18,12 @@
     "stop_loss_pct":12.0,
     "take_profit_pct":40.0,
     "total_trades":948,
-    "win_rate_pct":66.8776371308,
-    "profit_factor":2.9848747521,
-    "sharpe_ratio":0.86,
+    "win_rate_pct":69.0928270042,
+    "profit_factor":3.3210634874,
+    "sharpe_ratio":0.93,
     "max_drawdown_pct":32.7787541289,
-    "total_return_pct":270.201,
-    "final_equity":370201.0
+    "total_return_pct":307.209,
+    "final_equity":407209.0
   },
   {
     "strategy":"COMBINED",
@@ -31,12 +31,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":30.0,
     "total_trades":1013,
-    "win_rate_pct":65.3504442251,
-    "profit_factor":2.6454447104,
-    "sharpe_ratio":0.8,
+    "win_rate_pct":66.6337611056,
+    "profit_factor":2.8911932319,
+    "sharpe_ratio":0.87,
     "max_drawdown_pct":32.5530379076,
-    "total_return_pct":200.764,
-    "final_equity":300764.0
+    "total_return_pct":225.33,
+    "final_equity":325330.0
   },
   {
     "strategy":"INDUSTRY_MOMENTUM",
@@ -44,12 +44,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":30.0,
     "total_trades":948,
-    "win_rate_pct":65.2953586498,
-    "profit_factor":2.6146388584,
-    "sharpe_ratio":0.79,
+    "win_rate_pct":66.6666666667,
+    "profit_factor":2.8776056211,
+    "sharpe_ratio":0.87,
     "max_drawdown_pct":31.6143326457,
-    "total_return_pct":183.867,
-    "final_equity":283867.0
+    "total_return_pct":208.433,
+    "final_equity":308433.0
   },
   {
     "strategy":"COMBINED",
@@ -57,12 +57,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":25.0,
     "total_trades":1013,
-    "win_rate_pct":63.9684106614,
-    "profit_factor":2.4333500791,
-    "sharpe_ratio":0.75,
+    "win_rate_pct":64.9555774926,
+    "profit_factor":2.6318489696,
+    "sharpe_ratio":0.82,
     "max_drawdown_pct":30.5448514406,
-    "total_return_pct":151.217,
-    "final_equity":251217.0
+    "total_return_pct":169.851,
+    "final_equity":269851.0
   },
   {
     "strategy":"CONVICTION",
@@ -70,12 +70,12 @@
     "stop_loss_pct":12.0,
     "take_profit_pct":40.0,
     "total_trades":503,
-    "win_rate_pct":65.606361829,
-    "profit_factor":2.8047366843,
-    "sharpe_ratio":0.83,
+    "win_rate_pct":67.5944333996,
+    "profit_factor":3.0478190383,
+    "sharpe_ratio":0.9,
     "max_drawdown_pct":24.6047957371,
-    "total_return_pct":144.48,
-    "final_equity":244480.0
+    "total_return_pct":160.42,
+    "final_equity":260420.0
   },
   {
     "strategy":"INDUSTRY_MOMENTUM",
@@ -83,12 +83,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":25.0,
     "total_trades":948,
-    "win_rate_pct":64.029535865,
-    "profit_factor":2.3856570819,
-    "sharpe_ratio":0.74,
+    "win_rate_pct":65.0843881857,
+    "profit_factor":2.5958358849,
+    "sharpe_ratio":0.81,
     "max_drawdown_pct":30.3792461016,
-    "total_return_pct":137.726,
-    "final_equity":237726.0
+    "total_return_pct":156.36,
+    "final_equity":256360.0
   },
   {
     "strategy":"CONVICTION",
@@ -96,12 +96,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":30.0,
     "total_trades":503,
-    "win_rate_pct":64.2147117296,
-    "profit_factor":2.4963270034,
-    "sharpe_ratio":0.78,
+    "win_rate_pct":65.407554672,
+    "profit_factor":2.6921615646,
+    "sharpe_ratio":0.84,
     "max_drawdown_pct":22.4786066788,
-    "total_return_pct":98.18,
-    "final_equity":198180.0
+    "total_return_pct":108.674,
+    "final_equity":208674.0
   },
   {
     "strategy":"COMBINED",
@@ -109,12 +109,12 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":20.0,
     "total_trades":1013,
-    "win_rate_pct":61.994076999,
-    "profit_factor":1.9491308188,
-    "sharpe_ratio":0.58,
+    "win_rate_pct":62.8825271471,
+    "profit_factor":2.1031886917,
+    "sharpe_ratio":0.64,
     "max_drawdown_pct":27.6784884178,
-    "total_return_pct":88.123,
-    "final_equity":188123.0
+    "total_return_pct":100.677,
+    "final_equity":200677.0
   },
   {
     "strategy":"CLUSTER_BUY",
@@ -122,12 +122,12 @@
     "stop_loss_pct":12.0,
     "take_profit_pct":40.0,
     "total_trades":215,
-    "win_rate_pct":70.6976744186,
-    "profit_factor":3.9008182068,
-    "sharpe_ratio":1.06,
+    "win_rate_pct":75.3488372093,
+    "profit_factor":4.6243927199,
+    "sharpe_ratio":1.2,
     "max_drawdown_pct":12.3056605035,
-    "total_return_pct":84.379,
-    "final_equity":184379.0
+    "total_return_pct":99.968,
+    "final_equity":199968.0
   },
   {
     "strategy":"INDUSTRY_MOMENTUM",
@@ -135,12 +135,12 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":20.0,
     "total_trades":948,
-    "win_rate_pct":61.8143459916,
-    "profit_factor":1.9011287863,
-    "sharpe_ratio":0.57,
+    "win_rate_pct":62.7637130802,
+    "profit_factor":2.0631663113,
+    "sharpe_ratio":0.63,
     "max_drawdown_pct":27.3088541514,
-    "total_return_pct":79.193,
-    "final_equity":179193.0
+    "total_return_pct":91.747,
+    "final_equity":191747.0
   },
   {
     "strategy":"CONVICTION",
@@ -148,12 +148,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":25.0,
     "total_trades":503,
-    "win_rate_pct":62.8230616302,
-    "profit_factor":2.2792523233,
-    "sharpe_ratio":0.72,
+    "win_rate_pct":63.8170974155,
+    "profit_factor":2.4353718478,
+    "sharpe_ratio":0.78,
     "max_drawdown_pct":19.7115204121,
-    "total_return_pct":72.682,
-    "final_equity":172682.0
+    "total_return_pct":80.599,
+    "final_equity":180599.0
   },
   {
     "strategy":"COMBINED",
@@ -161,25 +161,12 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":15.0,
     "total_trades":1013,
-    "win_rate_pct":56.6633761106,
-    "profit_factor":1.7391013687,
-    "sharpe_ratio":0.51,
+    "win_rate_pct":57.3543928924,
+    "profit_factor":1.8521833308,
+    "sharpe_ratio":0.56,
     "max_drawdown_pct":21.1025452766,
-    "total_return_pct":63.018,
-    "final_equity":163018.0
-  },
-  {
-    "strategy":"INDUSTRY_MOMENTUM",
-    "holding_days":20,
-    "stop_loss_pct":8.0,
-    "take_profit_pct":15.0,
-    "total_trades":948,
-    "win_rate_pct":56.4345991561,
-    "profit_factor":1.6899279594,
-    "sharpe_ratio":0.49,
-    "max_drawdown_pct":21.0869480342,
-    "total_return_pct":55.642,
-    "final_equity":155642.0
+    "total_return_pct":71.603,
+    "final_equity":171603.0
   },
   {
     "strategy":"CLUSTER_BUY",
@@ -187,12 +174,25 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":30.0,
     "total_trades":215,
-    "win_rate_pct":68.3720930233,
-    "profit_factor":3.2458155162,
-    "sharpe_ratio":0.95,
+    "win_rate_pct":71.1627906977,
+    "profit_factor":3.7891668794,
+    "sharpe_ratio":1.09,
     "max_drawdown_pct":10.0378522361,
-    "total_return_pct":55.146,
-    "final_equity":155146.0
+    "total_return_pct":65.551,
+    "final_equity":165551.0
+  },
+  {
+    "strategy":"INDUSTRY_MOMENTUM",
+    "holding_days":20,
+    "stop_loss_pct":8.0,
+    "take_profit_pct":15.0,
+    "total_trades":948,
+    "win_rate_pct":57.1729957806,
+    "profit_factor":1.8088126031,
+    "sharpe_ratio":0.54,
+    "max_drawdown_pct":21.0869480342,
+    "total_return_pct":64.227,
+    "final_equity":164227.0
   },
   {
     "strategy":"CONVICTION",
@@ -200,51 +200,51 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":20.0,
     "total_trades":503,
-    "win_rate_pct":60.8349900596,
-    "profit_factor":1.9018171222,
-    "sharpe_ratio":0.57,
+    "win_rate_pct":61.8290258449,
+    "profit_factor":2.0299619128,
+    "sharpe_ratio":0.62,
     "max_drawdown_pct":16.1198772103,
-    "total_return_pct":43.326,
-    "final_equity":143326.0
+    "total_return_pct":48.676,
+    "final_equity":148676.0
   },
   {
     "strategy":"CLUSTER_BUY",
     "holding_days":45,
     "stop_loss_pct":10.0,
     "take_profit_pct":25.0,
-    "total_trades":215,
-    "win_rate_pct":64.6511627907,
-    "profit_factor":2.7535949195,
-    "sharpe_ratio":0.86,
-    "max_drawdown_pct":10.3184815828,
-    "total_return_pct":38.658,
-    "final_equity":138658.0
-  },
-  {
-    "strategy":"CONVICTION",
-    "holding_days":20,
-    "stop_loss_pct":8.0,
-    "take_profit_pct":15.0,
-    "total_trades":503,
-    "win_rate_pct":57.4552683897,
-    "profit_factor":1.7914120484,
-    "sharpe_ratio":0.55,
-    "max_drawdown_pct":10.2907835526,
-    "total_return_pct":33.802,
-    "final_equity":133802.0
-  },
-  {
-    "strategy":"CLUSTER_BUY",
-    "holding_days":30,
-    "stop_loss_pct":8.0,
-    "take_profit_pct":20.0,
     "total_trades":215,
     "win_rate_pct":66.511627907,
-    "profit_factor":2.3504551365,
-    "sharpe_ratio":0.73,
+    "profit_factor":3.1694575307,
+    "sharpe_ratio":0.98,
+    "max_drawdown_pct":10.3184815828,
+    "total_return_pct":46.511,
+    "final_equity":146511.0
+  },
+  {
+    "strategy":"CONVICTION",
+    "holding_days":20,
+    "stop_loss_pct":8.0,
+    "take_profit_pct":15.0,
+    "total_trades":503,
+    "win_rate_pct":58.0516898608,
+    "profit_factor":1.890911687,
+    "sharpe_ratio":0.59,
+    "max_drawdown_pct":10.2907835526,
+    "total_return_pct":37.437,
+    "final_equity":137437.0
+  },
+  {
+    "strategy":"CLUSTER_BUY",
+    "holding_days":30,
+    "stop_loss_pct":8.0,
+    "take_profit_pct":20.0,
+    "total_trades":215,
+    "win_rate_pct":67.9069767442,
+    "profit_factor":2.6732684222,
+    "sharpe_ratio":0.84,
     "max_drawdown_pct":8.7409597115,
-    "total_return_pct":24.924,
-    "final_equity":124924.0
+    "total_return_pct":30.246,
+    "final_equity":130246.0
   },
   {
     "strategy":"CLUSTER_BUY",
@@ -252,12 +252,12 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":15.0,
     "total_trades":215,
-    "win_rate_pct":57.2093023256,
-    "profit_factor":2.0146188851,
-    "sharpe_ratio":0.64,
+    "win_rate_pct":58.6046511628,
+    "profit_factor":2.2557853418,
+    "sharpe_ratio":0.74,
     "max_drawdown_pct":6.8378718686,
-    "total_return_pct":17.837,
-    "final_equity":117837.0
+    "total_return_pct":21.435,
+    "final_equity":121435.0
   },
   {
     "strategy":"CSUITE_CLUSTER",
@@ -265,12 +265,12 @@
     "stop_loss_pct":12.0,
     "take_profit_pct":40.0,
     "total_trades":24,
-    "win_rate_pct":66.6666666667,
-    "profit_factor":1.8880901496,
-    "sharpe_ratio":0.59,
+    "win_rate_pct":75.0,
+    "profit_factor":2.2830698835,
+    "sharpe_ratio":0.8,
     "max_drawdown_pct":4.1339830441,
-    "total_return_pct":4.571,
-    "final_equity":104571.0
+    "total_return_pct":6.169,
+    "final_equity":106169.0
   },
   {
     "strategy":"CSUITE_CLUSTER",
@@ -278,12 +278,12 @@
     "stop_loss_pct":10.0,
     "take_profit_pct":30.0,
     "total_trades":24,
-    "win_rate_pct":70.8333333333,
-    "profit_factor":2.1125373134,
-    "sharpe_ratio":0.73,
+    "win_rate_pct":75.0,
+    "profit_factor":2.465590743,
+    "sharpe_ratio":0.92,
     "max_drawdown_pct":2.9151251252,
-    "total_return_pct":3.727,
-    "final_equity":103727.0
+    "total_return_pct":4.813,
+    "final_equity":104813.0
   },
   {
     "strategy":"CSUITE_CLUSTER",
@@ -292,11 +292,11 @@
     "take_profit_pct":25.0,
     "total_trades":24,
     "win_rate_pct":66.6666666667,
-    "profit_factor":2.110817942,
-    "sharpe_ratio":0.64,
+    "profit_factor":2.4692172383,
+    "sharpe_ratio":0.82,
     "max_drawdown_pct":2.0478493609,
-    "total_return_pct":2.526,
-    "final_equity":102526.0
+    "total_return_pct":3.341,
+    "final_equity":103341.0
   },
   {
     "strategy":"CSUITE_CLUSTER",
@@ -304,12 +304,12 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":20.0,
     "total_trades":24,
-    "win_rate_pct":62.5,
-    "profit_factor":1.9522643819,
-    "sharpe_ratio":0.67,
+    "win_rate_pct":70.8333333333,
+    "profit_factor":2.374671916,
+    "sharpe_ratio":0.88,
     "max_drawdown_pct":1.3937560528,
-    "total_return_pct":1.556,
-    "final_equity":101556.0
+    "total_return_pct":2.095,
+    "final_equity":102095.0
   },
   {
     "strategy":"CSUITE_CLUSTER",
@@ -317,11 +317,11 @@
     "stop_loss_pct":8.0,
     "take_profit_pct":15.0,
     "total_trades":24,
-    "win_rate_pct":62.5,
-    "profit_factor":1.5763182239,
-    "sharpe_ratio":0.45,
+    "win_rate_pct":66.6666666667,
+    "profit_factor":1.7902511078,
+    "sharpe_ratio":0.58,
     "max_drawdown_pct":1.523374369,
-    "total_return_pct":1.246,
-    "final_equity":101246.0
+    "total_return_pct":1.605,
+    "final_equity":101605.0
   }
 ]

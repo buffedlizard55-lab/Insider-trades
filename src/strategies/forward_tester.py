@@ -319,7 +319,7 @@ class ForwardTestAndPredictor:
         buys = [p for p in predictions if p.action == "BUY_ENTRY_TARGET"]
         sells = [p for p in predictions if p.action == "SELL_EXIT_TRIGGER"]
 
-        for p in buys[:15]:
+        for p in buys[:35]:
             url = p.trigger_url
             lines.append(
                 f"| **{p.ticker}** | {p.company_name} | {p.industry} | {p.trigger_date} | **${p.recommended_entry_price:,.2f}** | **${p.target_take_profit_price:,.2f}** | `${p.target_stop_loss_price:,.2f}` | {p.recommended_holding_days}d | **{p.confidence_score}%** | **+{p.expected_alpha_pct:+.2f}%** | {p.trigger_reason[:50]}... | [SEC EDGAR]({url})<br>`{p.trigger_accession}` |"
