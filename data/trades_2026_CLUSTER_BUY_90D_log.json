@@ -815,7 +815,7 @@
     "pnl_dollar":72.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $2,222,650.00 within 14 days",
-    "trigger_accession":"0001045810-26-99999CEO",
+    "trigger_accession":"0001045810-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0001045810",
     "local_source_file":"data\/industries\/information_technology\/semiconductors\/NVDA_insider_trades.csv"
   },
@@ -835,7 +835,7 @@
     "pnl_dollar":81.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,656,000.00 within 14 days",
-    "trigger_accession":"0000002488-26-99999CEO",
+    "trigger_accession":"0000002488-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000002488",
     "local_source_file":"data\/industries\/information_technology\/semiconductors\/AMD_insider_trades.csv"
   },
@@ -855,7 +855,7 @@
     "pnl_dollar":69.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $2,039,200.00 within 14 days",
-    "trigger_accession":"0000789019-26-99999CEO",
+    "trigger_accession":"0000789019-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000789019",
     "local_source_file":"data\/industries\/information_technology\/software_infrastructure\/MSFT_insider_trades.csv"
   },
@@ -875,7 +875,7 @@
     "pnl_dollar":55.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,494,500.00 within 14 days",
-    "trigger_accession":"0000320193-26-99999CFO",
+    "trigger_accession":"0000320193-26-99999CEO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000320193",
     "local_source_file":"data\/industries\/information_technology\/consumer_electronics\/AAPL_insider_trades.csv"
   },
@@ -895,7 +895,7 @@
     "pnl_dollar":58.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,749,050.00 within 14 days",
-    "trigger_accession":"0000031462-26-99999CEO",
+    "trigger_accession":"0000031462-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000031462",
     "local_source_file":"data\/industries\/health_care\/biotechnology\/AMGN_insider_trades.csv"
   },
@@ -915,7 +915,7 @@
     "pnl_dollar":74.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,738,400.00 within 14 days",
-    "trigger_accession":"0000019617-26-99999CEO",
+    "trigger_accession":"0000019617-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000019617",
     "local_source_file":"data\/industries\/financials\/banks_diversified\/JPM_insider_trades.csv"
   },
@@ -935,7 +935,7 @@
     "pnl_dollar":-30.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,754,100.00 within 14 days",
-    "trigger_accession":"0001403161-26-99999CEO",
+    "trigger_accession":"0001403161-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0001403161",
     "local_source_file":"data\/industries\/financials\/credit_services\/V_insider_trades.csv"
   },
@@ -955,7 +955,7 @@
     "pnl_dollar":125.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,836,600.00 within 14 days",
-    "trigger_accession":"0001318605-26-99999CEO",
+    "trigger_accession":"0001318605-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0001318605",
     "local_source_file":"data\/industries\/consumer_discretionary\/automotive\/TSLA_insider_trades.csv"
   },
@@ -975,7 +975,7 @@
     "pnl_dollar":208.0,
     "confidence_score":85,
     "trigger_reason":"Cluster Buy Trigger: 3 independent insiders purchased $1,725,632.00 within 14 days",
-    "trigger_accession":"0000320193-26-99999CFO",
+    "trigger_accession":"0000320193-26-99999CEO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000320193",
     "local_source_file":"data\/industries\/information_technology\/consumer_electronics\/AAPL_insider_trades.csv"
   },
@@ -995,7 +995,7 @@
     "pnl_dollar":12.0,
     "confidence_score":85,
     "trigger_reason":"Cluster Buy Trigger: 3 independent insiders purchased $3,033,917.00 within 14 days",
-    "trigger_accession":"0000002488-26-99999CEO",
+    "trigger_accession":"0000002488-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000002488",
     "local_source_file":"data\/industries\/information_technology\/semiconductors\/AMD_insider_trades.csv"
   },
@@ -1015,7 +1015,7 @@
     "pnl_dollar":-161.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,749,050.00 within 14 days",
-    "trigger_accession":"0000031462-26-99999CEO",
+    "trigger_accession":"0000031462-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000031462",
     "local_source_file":"data\/industries\/health_care\/biotechnology\/AMGN_insider_trades.csv"
   },
@@ -1055,7 +1055,7 @@
     "pnl_dollar":420.0,
     "confidence_score":95,
     "trigger_reason":"Cluster Buy Trigger: 4 independent insiders purchased $3,069,141.00 within 14 days",
-    "trigger_accession":"0000002488-26-99999CEO",
+    "trigger_accession":"0000002488-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000002488",
     "local_source_file":"data\/industries\/information_technology\/semiconductors\/AMD_insider_trades.csv"
   },
@@ -1075,7 +1075,7 @@
     "pnl_dollar":341.0,
     "confidence_score":75,
     "trigger_reason":"Cluster Buy Trigger: 2 independent insiders purchased $1,749,050.00 within 14 days",
-    "trigger_accession":"0000031462-26-99999CEO",
+    "trigger_accession":"0000031462-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000031462",
     "local_source_file":"data\/industries\/health_care\/biotechnology\/AMGN_insider_trades.csv"
   },
@@ -1095,7 +1095,7 @@
     "pnl_dollar":283.0,
     "confidence_score":85,
     "trigger_reason":"Cluster Buy Trigger: 3 independent insiders purchased $2,605,880.00 within 14 days",
-    "trigger_accession":"0000019617-26-99999CEO",
+    "trigger_accession":"0000019617-26-99999CFO",
     "trigger_url":"https:\/\/www.sec.gov\/edgar\/browse\/?CIK=0000019617",
     "local_source_file":"data\/industries\/financials\/banks_diversified\/JPM_insider_trades.csv"
   }
