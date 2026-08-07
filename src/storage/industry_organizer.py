@@ -419,8 +419,9 @@ class IndustryOrganizer:
                         0
                     ]
 
-                from src.universe.market_data import HistoricalMarketData
-                price = HistoricalMarketData.get_daily_closing_price(comp.ticker, txn_date)
+                from src.universe.price_database import get_price_db
+                pdb = get_price_db()
+                price = pdb.get_daily_close(comp.ticker, txn_date)
                 shares = random.randint(5, 50) * 100
                 total_val = round(shares * price, 2)
                 acq_disp = "A" if code in ("P", "A", "M") else "D"
@@ -463,7 +464,7 @@ class IndustryOrganizer:
                     ("Chief Financial Officer", "CFO_Conviction"),
                 ]:
                     shares = 5000
-                    price = HistoricalMarketData.get_daily_closing_price(comp.ticker, cluster_date)
+                    price = pdb.get_daily_close(comp.ticker, cluster_date)
                     yr_short = str(year)[-2:]
                     company_trades.append(
                         {

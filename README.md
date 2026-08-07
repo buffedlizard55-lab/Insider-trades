@@ -168,7 +168,19 @@ python main.py universe --industry "Semiconductors"
 python main.py parse-xml --file data/sample_xmls/AAPL_0000320193_form4_sample1.xml
 ```
 
-#### 4. Display the Industry Insider Sentiment Heatmap
+#### 4. Query or Update Stored Daily Stock Prices (`data/market_prices/`)
+```bash
+# View last 10 daily open, high, low, close & volume prices for AVGO
+python main.py prices --ticker AVGO --last 10
+
+# View daily price history for AMD or NVDA
+python main.py prices --ticker AMD --last 10
+
+# Seed or update authoritative daily price CSV files for all $1B+ companies
+python main.py prices --seed --all
+```
+
+#### 5. Display the Industry Insider Sentiment Heatmap
 ```bash
 # Display 2026 industry sentiment ranking table
 python main.py heatmap --days 365
@@ -235,12 +247,13 @@ The repository includes pre-configured GitHub Actions workflows in `examples/git
 │   │   └── industry_analytics.py # Industry heatmap & sentiment rankings
 │   └── universe/                 # NASDAQ & S&P 500 company, CIK & market cap ($1B+) manager
 │       └── universe_manager.py   # Ticker-to-CIK mapping & GICS industry filters
-├── data/                         # Industry-organized insider trading database
+├── data/                         # Industry-organized insider trading & price database
+│   ├── market_prices/            # Stored daily stock price CSVs across 2021-2026 ({TICKER}_daily_prices.csv)
 │   ├── universe/                 # Master NASDAQ & S&P 500 universe ($1B+ market cap) CSV/JSON
 │   ├── industries/               # Partitioned by Sector -> Industry -> Ticker CSVs (Year 2026)
 │   ├── sample_xmls/              # Real SEC Form 4 XML files for testing & demo
 │   └── summary_by_industry.csv   # Aggregated cross-industry summary stats
-└── tests/                        # Full unit & integration test suite (20+ tests)
+└── tests/                        # Full unit & integration test suite (23+ tests)
 ```
 
 ---

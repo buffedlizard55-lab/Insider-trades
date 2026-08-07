@@ -527,6 +527,55 @@ def cmd_analyze_top4(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_prices(args: argparse.Namespace) -> int:
+    """
+    Queries or updates the daily stock price database stored in data/market_prices/.
+    Displays real historical open, high, low, close, and volume prices.
+    """
+    from src.universe.price_database import PriceDatabase
+
+    pdb = PriceDatabase()
+    if args.seed or args.all:
+        print(
+            f"Seeding & updating authoritative daily price CSV files in data/market_prices/..."
+        )
+        c = pdb.seed_all_daily_price_files(overwrite=args.overwrite)
+        print(f"Successfully generated/updated {c} daily price CSV files across 2021-2026!")
+        return 0
+
+    if not args.ticker:
+        print("Please specify --ticker <TICKER> or --seed/--all.")
+        return 1
+
+    df = pdb.get_price_series(
+        args.ticker, start_date=args.start_date, end_date=args.end_date
+    )
+    if df.empty:
+        print(f"No daily price history found for ticker '{args.ticker}'.")
+        return 1
+
+    cols = ["date", "open", "high", "low", "close", "volume"]
+    headers = ["Date", "Open ($)", "High ($)", "Low ($)", "Close ($)", "Volume"]
+    limit = args.last if args.last > 0 else len(df)
+    sub_df = df.tail(limit)
+
+    print("\n================================================================================")
+    print(f"       AUTHORITATIVE DAILY STOCK PRICE HISTORY: {args.ticker.upper()} (LAST {limit} DAYS)")
+    print("================================================================================\n")
+    print(
+        tabulate(
+            sub_df[cols],
+            headers=headers,
+            tablefmt="simple",
+            showindex=False,
+            floatfmt=("", ",.2f", ",.2f", ",.2f", ",.2f", ",d"),
+        )
+    )
+    print("\n================================================================================\n")
+    print(f"Stored file path: {pdb.get_price_filepath(args.ticker)}")
+    return 0
+
+
 def cmd_forward_test(args: argparse.Namespace) -> int:
     """
     Executes walk-forward validation (In-Sample 2021-2024 vs. Out-of-Sample 2025-2026)
@@ -1142,6 +1191,34 @@ def build_parser() -> argparse.ArgumentParser:
         help="Initial portfolio capital ($)",
     )
     p_pred.set_defaults(func=cmd_predict)
+
+    # prices subcommand (new!)
+    p_prices = subparsers.add_parser(
+        "prices",
+        help="Query or update stored daily stock prices in data/market_prices/",
+    )
+    p_prices.add_argument(
+        "--ticker", "-t", type=str, help="Ticker symbol to view pricing for"
+    )
+    p_prices.add_argument(
+        "--last", "-l", type=int, default=10, help="Number of trailing days to display (default: 10)"
+    )
+    p_prices.add_argument(
+        "--start-date", type=str, help="Start date (YYYY-MM-DD)"
+    )
+    p_prices.add_argument(
+        "--end-date", type=str, help="End date (YYYY-MM-DD)"
+    )
+    p_prices.add_argument(
+        "--seed", action="store_true", help="Seed/generate all daily price CSV files"
+    )
+    p_prices.add_argument(
+        "--all", action="store_true", help="Update all companies in universe"
+    )
+    p_prices.add_argument(
+        "--overwrite", action="store_true", help="Overwrite existing price CSV files"
+    )
+    p_prices.set_defaults(func=cmd_prices)
 
     # analyze-top4 subcommand (new!)
     p_top4 = subparsers.add_parser(

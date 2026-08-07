@@ -11,7 +11,7 @@ TICKER_BASELINE_PRICES: Dict[str, float] = {
     # Information Technology - Semiconductors
     "AMD": 155.00,    # Advanced Micro Devices (~$155)
     "NVDA": 135.00,   # NVIDIA Corporation (post-split ~$135)
-    "AVGO": 172.00,   # Broadcom Inc. (post-split ~$172)
+    "AVGO": 248.50,   # Broadcom Inc. (post-split ~$248)
     "INTC": 35.00,    # Intel Corporation (~$35)
     "QCOM": 202.00,   # QUALCOMM Incorporated (~$202)
     "MU": 138.00,     # Micron Technology Inc. (~$138)

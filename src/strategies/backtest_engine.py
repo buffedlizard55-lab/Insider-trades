@@ -420,9 +420,9 @@ class BacktestEngine:
 
     @staticmethod
     def _simulated_price(ticker: str, date_str: str) -> float:
-        """Generates real historical closing stock price for a ticker and date."""
-        from src.universe.market_data import HistoricalMarketData
-        return HistoricalMarketData.get_daily_closing_price(ticker, date_str)
+        """Generates real historical closing stock price for a ticker and date from stored price database."""
+        from src.universe.price_database import get_price_db
+        return get_price_db().get_daily_close(ticker, date_str)
 
     @staticmethod
     def _simulate_trade_outcome(
@@ -436,17 +436,19 @@ class BacktestEngine:
     ) -> Tuple[float, str, int, float, str]:
         """
         Simulates holding period return, exit reason, exit price, and exit date
-        using real US trading days and historical closing stock prices.
+        using real US trading days and historical closing stock prices from stored database.
         """
         from src.universe.market_data import HistoricalMarketData
+        from src.universe.price_database import get_price_db
 
+        pdb = get_price_db()
         tp_price = round(entry_price * (1.0 + take_profit_pct / 100.0), 2)
         sl_price = round(entry_price * (1.0 - stop_loss_pct / 100.0), 2)
 
         # Check each trading day in the holding period
         for day_idx in range(1, holding_days + 1):
             curr_dt = HistoricalMarketData.get_next_trading_day(entry_date, day_idx)
-            curr_price = HistoricalMarketData.get_daily_closing_price(sig.ticker, curr_dt)
+            curr_price = pdb.get_daily_close(sig.ticker, curr_dt)
 
             if curr_price >= tp_price:
                 ret = round((curr_price - entry_price) / entry_price * 100.0, 2)
@@ -458,6 +460,6 @@ class BacktestEngine:
 
         # Holding period completed
         final_dt = HistoricalMarketData.get_next_trading_day(entry_date, holding_days)
-        final_price = HistoricalMarketData.get_daily_closing_price(sig.ticker, final_dt)
+        final_price = pdb.get_daily_close(sig.ticker, final_dt)
         ret = round((final_price - entry_price) / entry_price * 100.0, 2)
         return ret, "HOLDING_PERIOD_EXIT", holding_days, final_price, final_dt
