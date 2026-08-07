@@ -100,6 +100,19 @@ class BacktestEngine:
         self.um = universe_manager or UniverseManager()
         self.sg = SignalGenerator(self.um)
 
+    @staticmethod
+    def get_default_risk_params(holding_days: int) -> Tuple[float, float]:
+        """Returns standard (stop_loss_pct, take_profit_pct) for a given holding period."""
+        if holding_days >= 90:
+            return 12.0, 40.0
+        elif holding_days >= 60:
+            return 10.0, 30.0
+        elif holding_days >= 45:
+            return 10.0, 25.0
+        elif holding_days >= 30:
+            return 8.0, 20.0
+        return 8.0, 15.0
+
     def run_backtest(
         self,
         strategy: str = "cluster_buy",
@@ -108,10 +121,10 @@ class BacktestEngine:
         sector: Optional[str] = None,
         year: Optional[int] = 2026,
         holding_days: int = 60,
-        stop_loss_pct: float = 10.0,
-        take_profit_pct: float = 25.0,
+        stop_loss_pct: Optional[float] = None,
+        take_profit_pct: Optional[float] = None,
         initial_capital: float = 100000.0,
-        min_confidence: int = 70,
+        min_confidence: int = 60,
         min_market_cap: float = 1_000_000_000.0,
         preloaded_signals: Optional[Dict[str, List[InsiderSignal]]] = None,
         preloaded_trades: Optional[Dict[str, pd.DataFrame]] = None,
@@ -121,6 +134,10 @@ class BacktestEngine:
         target universe ($1B+ market cap focus). Supports preloaded_signals
         or preloaded_trades dicts for lightning-fast parameter sweeps.
         """
+        if stop_loss_pct is None or take_profit_pct is None:
+            def_sl, def_tp = self.get_default_risk_params(holding_days)
+            stop_loss_pct = stop_loss_pct if stop_loss_pct is not None else def_sl
+            take_profit_pct = take_profit_pct if take_profit_pct is not None else def_tp
         if ticker:
             comp = self.um.get_company(ticker)
             companies = [comp] if comp else []
@@ -329,7 +346,6 @@ class BacktestEngine:
             "combined",
         ]
         param_grid = [
-            # (holding_days, stop_loss, take_profit)
             (20, 8.0, 15.0),
             (30, 8.0, 20.0),
             (45, 10.0, 25.0),
