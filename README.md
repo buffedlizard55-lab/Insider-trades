@@ -137,7 +137,54 @@ For complete methodology and strategy documentation, see [`docs/STRATEGIES.md`](
 
 ---
 
-## 5. Quick Start & Command-Line Interface (CLI)
+## 5. GitHub Pages Dashboard (Beginner-Friendly)
+
+A clean, static **GitHub Pages dashboard** lives in [`site/`](site/) — no sign-up, no Python, no
+terminal needed to use it. It is designed for beginners and shows the **Top 3 ROI strategies**
+with **two tables per strategy (6 tables total)**:
+
+| Strategy | Table 1 — 🎯 Active & Upcoming Trades | Table 2 — 📈 Trades That Drove the ROI |
+| :--- | :--- | :--- |
+| **COMBINED** (90d) — #1 ROI +329.13% | Every entry target the strategy wants to buy right now: ticker, entry price, take-profit (+35%), stop-loss (−12%), hold, confidence, trigger reason & SEC filing link | All 1,013 backtested trades behind the ROI, with entry/exit prices, return %, P&L and trigger reasons |
+| **INDUSTRY_MOMENTUM** (90d) — #2 ROI +307.21% | Same — the 95 high-confidence (≥75%) entry targets it would place today | All 948 backtested trades |
+| **CONVICTION** (90d) — #3 ROI +160.42% | Same — the 87 C-Suite CEO/CFO conviction-buy entry targets | All 503 backtested trades |
+
+Each strategy section leads with a **prominent green “Active & upcoming trades” table** (newest
+signals first, with `NEW` / `RECENT` badges), followed by the full trade history (searchable,
+sortable, paginated, downloadable as CSV). A beginner glossary explains every term (ROI, win rate,
+Sharpe, stop-loss, …) on the page itself.
+
+### Refreshing the Public Insider Trade Collection (3 ways)
+
+1. **One-click from the dashboard**: press **“↻ Refresh data”** — it opens the
+   [Daily Insider Trades & Dashboard Refresh](https://github.com/buffedlizard55-lab/Insider-trades/actions/workflows/daily_insider_update.yml)
+   workflow in GitHub Actions; click **Run workflow** and the pipeline re-pulls the latest SEC EDGAR
+   Form 4 filings, re-runs backtests & predictions, rebuilds the dashboard data and re-deploys Pages.
+2. **Fully automatic**: the same workflow runs on a schedule (Mon–Fri 22:00 UTC, after US market
+   close), so the dashboard is always up to date.
+3. **From your terminal** (for local/advanced use):
+
+```bash
+python main.py update --all          # 1. Re-pull the latest public insider trades from SEC EDGAR
+python main.py full-backtest         # 2. Refresh the full-dataset backtest & ROI tracker
+python main.py analyze-top4          # 3. Refresh the Top-4 strategy trade logs
+python main.py forward-test          # 4. Refresh forward tests & active entry/exit predictions
+python main.py build-site            # 5. Rebuild the dashboard data (site/data/*.json)
+git add data/ site/ docs/ && git commit -m "chore(data): refresh insider trades & dashboard"
+git push                             # 6. Push — GitHub Pages rebuilds the site automatically
+```
+
+> **To publish the dashboard (2 clicks)**: GitHub → *Settings → Pages → Build and deployment
+> source → Deploy from a branch* → branch **`main`**, folder **`/site`** → *Save*. The dashboard
+> goes live at `https://buffedlizard55-lab.github.io/Insider-trades/` and GitHub rebuilds it
+> automatically on every push. (Prefer GitHub Actions as the source instead? Copy
+> [`examples/github_workflows/deploy_pages.yml`](examples/github_workflows/deploy_pages.yml) into
+> `.github/workflows/` and select *Source: GitHub Actions* — this needs a GitHub account/token with
+> **workflows** permission to push the file.)
+
+---
+
+## 6. Quick Start & Command-Line Interface (CLI)
 
 ### Installation
 ```bash
@@ -191,12 +238,12 @@ python main.py heatmap --days 365
 python main.py heatmap --days 90 --format markdown
 ```
 
-#### 5. Scan a Company or Industry for Insider Signals
+#### 6. Scan a Company or Industry for Insider Signals
 ```bash
 python main.py signals --ticker NVDA --min-confidence 75 --year 2026
 ```
 
-#### 6. Run a Quantitative Strategy Backtest
+#### 7. Run a Quantitative Strategy Backtest
 ```bash
 # Backtest the Cluster Buy strategy across all industries
 python main.py backtest --strategy cluster_buy --show-log
@@ -205,7 +252,7 @@ python main.py backtest --strategy cluster_buy --show-log
 python main.py backtest --strategy conviction --industry semiconductors --holding-days 45
 ```
 
-#### 7. Update / Collect Insider Trade Datasets by Year
+#### 8. Update / Collect Insider Trade Datasets by Year
 ```bash
 # Collect current year 2026 trades
 python main.py collect --year 2026 --min-market-cap 1000000000
@@ -214,17 +261,28 @@ python main.py collect --year 2026 --min-market-cap 1000000000
 python main.py collect --year 2025 --min-market-cap 1000000000
 ```
 
+#### 9. Build the GitHub Pages Dashboard Data
+
+```bash
+# Regenerate the dashboard payloads (site/data/*.json) from the latest
+# backtest tracker, trade logs and active predictions
+python main.py build-site
+```
+
 ---
 
-## 6. Automated Daily CI/CD & GitHub Actions
+## 7. Automated Daily CI/CD & GitHub Actions
 
-The repository includes pre-configured GitHub Actions workflows in `examples/github_workflows/`:
-- **`daily_insider_update.yml`**: Scheduled daily cron job (`0 22 * * 1-5`, 10 PM UTC Mon–Fri after market close) that fetches recent Form 4 filings, updates industry trade logs, regenerates the daily industry sentiment heatmap, and commits changes back to the repository.
+The repository ships pre-configured GitHub Actions workflows in `examples/github_workflows/`
+(copy one into `.github/workflows/` to activate it — pushing workflow files requires a GitHub
+connection with **workflows** permission):
+- **`daily_insider_update.yml`**: Scheduled daily cron job (`0 22 * * 1-5`, 10 PM UTC Mon–Fri after market close) that re-pulls the latest SEC EDGAR Form 4 filings, refreshes backtest KPIs, Top-4 trade logs, forward-test predictions, regenerates the industry sentiment heatmap, rebuilds the dashboard data (`site/data/`), and commits everything back — which then triggers the Pages rebuild.
+- **`deploy_pages.yml`**: Builds the static dashboard and publishes it to **GitHub Pages** via *Settings → Pages → Source: GitHub Actions*. Manual `workflow_dispatch` runs are also supported. (Alternative without workflows: *Deploy from a branch* → `main` / `/site`.)
 - **`test_and_lint.yml`**: Automated CI pipeline that executes the full unit and integration test suite (`pytest tests/`) on every push and pull request.
 
 ---
 
-## 7. Repository Structure
+## 8. Repository Structure
 
 ```
 .
@@ -236,6 +294,11 @@ The repository includes pre-configured GitHub Actions workflows in `examples/git
 ├── docs/
 │   ├── DATA_SOURCES.md           # Exhaustive SEC EDGAR Form 4 documentation & schemas
 │   └── STRATEGIES.md             # Quantitative strategy theory, signals & backtesting
+├── site/                         # GitHub Pages dashboard (static, beginner-friendly)
+│   ├── index.html                # Top-3 strategies · 6 tables (active + ROI history)
+│   ├── styles.css                # Clean, responsive UI
+│   ├── js/app.js                 # Table rendering, search, sort & pagination
+│   └── data/                     # Generated dashboard payloads (python main.py build-site)
 ├── src/
 │   ├── cli.py                    # CLI subcommands implementation
 │   ├── edgar/                    # SEC EDGAR client & Form 4 XML parser
@@ -246,7 +309,9 @@ The repository includes pre-configured GitHub Actions workflows in `examples/git
 │   ├── strategies/               # Quantitative signals & backtesting engine
 │   │   ├── signal_generator.py   # CLUSTER_BUY, CONVICTION_BUY, HEAVY_SELL_EXIT signals
 │   │   ├── backtest_engine.py    # Backtest simulation & KPI report generator
-│   │   └── industry_analytics.py # Industry heatmap & sentiment rankings
+│   │   ├── industry_analytics.py # Industry heatmap & sentiment rankings
+│   │   ├── forward_tester.py     # Walk-forward validation + active entry/exit predictions
+│   │   └── site_builder.py       # Builds GitHub Pages dashboard data (site/data/*.json)
 │   └── universe/                 # NASDAQ & S&P 500 company, CIK & market cap ($1B+) manager
 │       └── universe_manager.py   # Ticker-to-CIK mapping & GICS industry filters
 ├── data/                         # Industry-organized insider trading & price database

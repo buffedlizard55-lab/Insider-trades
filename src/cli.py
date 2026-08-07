@@ -792,6 +792,25 @@ def cmd_full_backtest(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_site(args: argparse.Namespace) -> int:
+    """
+    Builds the GitHub Pages dashboard data (site/data/*.json) from the latest
+    backtest tracker, trade logs, and active predictions. Run after
+    `update` / `analyze-top4` / `forward-test` to keep the dashboard fresh.
+    """
+    from src.strategies.site_builder import build_site_data
+
+    print("Building GitHub Pages dashboard data from latest artifacts...")
+    summary = build_site_data(out_dir=args.out)
+    print(f"Dashboard data written to: {summary['output_dir']}")
+    for key, counts in summary["strategies"].items():
+        print(
+            f"  {key:<18} trades={counts['trades']:>5}  active_entries={counts['active']:>3}"
+        )
+    print("Done. Commit site/data/ and push to deploy via GitHub Pages.")
+    return 0
+
+
 def cmd_collect(args: argparse.Namespace) -> int:
     """
     Collects and organizes insider trades for companies with market cap over $1B.
@@ -1244,6 +1263,19 @@ def build_parser() -> argparse.ArgumentParser:
         help="Print individual trade tables with trigger explanations",
     )
     p_top4.set_defaults(func=cmd_analyze_top4)
+
+    # build-site subcommand (GitHub Pages dashboard)
+    p_site = subparsers.add_parser(
+        "build-site",
+        help="Build GitHub Pages dashboard data (site/data/*.json) from latest artifacts",
+    )
+    p_site.add_argument(
+        "--out",
+        type=str,
+        default=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site", "data"),
+        help="Output directory for dashboard JSON files (default: site/data)",
+    )
+    p_site.set_defaults(func=cmd_build_site)
 
     # update subcommand
     p_up = subparsers.add_parser(

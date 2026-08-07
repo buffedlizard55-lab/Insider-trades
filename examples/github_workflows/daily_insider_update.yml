@@ -1,17 +1,27 @@
-name: Daily Insider Trades & Heatmap Update
+name: Daily Insider Trades & Dashboard Refresh
+
+# 1. Re-pulls the latest public insider trades (SEC EDGAR Form 4 filings)
+# 2. Re-runs backtests, predictions and the dashboard build
+# 3. Commits the refreshed data — which triggers the Pages deployment workflow
+#
+# Runs automatically Mon–Fri at 22:00 UTC (after US market close) and can be
+# triggered manually from the Actions tab ("Run workflow") — this is the same
+# action the dashboard's "Refresh data" button opens.
+#
+# Copy this file to .github/workflows/daily_insider_update.yml in your repo.
 
 on:
   schedule:
-    # Run at 22:00 UTC Monday through Friday (after US market close)
+    # 10 PM UTC Monday through Friday (after US market close)
     - cron: '0 22 * * 1-5'
   workflow_dispatch:
-    # Allow manual execution from GitHub Actions UI
+
+permissions:
+  contents: write
 
 jobs:
-  update-insider-trades:
+  refresh-insider-trades:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
@@ -28,18 +38,31 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Update Form 4 Insider Trades Dataset
-        run: |
-          python main.py update --all
-          python main.py heatmap --days 90 --format markdown > DAILY_HEATMAP_REPORT.md
+      - name: Update Form 4 Insider Trades Dataset (SEC EDGAR)
+        run: python main.py update --all
 
-      - name: Check for changes and commit
+      - name: Refresh full-dataset backtest & ROI tracker
+        run: python main.py full-backtest
+
+      - name: Refresh Top-4 strategy trade logs
+        run: python main.py analyze-top4
+
+      - name: Refresh forward tests & active entry/exit predictions
+        run: python main.py forward-test
+
+      - name: Rebuild GitHub Pages dashboard data
+        run: python main.py build-site
+
+      - name: Regenerate industry sentiment heatmap
+        run: python main.py heatmap --days 90 --format markdown > DAILY_HEATMAP_REPORT.md
+
+      - name: Commit and push refreshed data
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ DAILY_HEATMAP_REPORT.md
+          git add data/ docs/ site/ DAILY_HEATMAP_REPORT.md
           if ! git diff-index --quiet HEAD; then
-            git commit -m "chore(data): daily SEC Form 4 insider trades update & heatmap [skip ci]"
+            git commit -m "chore(data): daily SEC Form 4 insider trades refresh & dashboard rebuild [skip ci]"
             git push
           else
             echo "No new Form 4 trades or summary changes to commit."

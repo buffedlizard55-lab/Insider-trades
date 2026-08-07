@@ -1,0 +1,71 @@
+name: Deploy GitHub Pages Dashboard
+
+# Builds the static dashboard (site/) and publishes it to GitHub Pages.
+# Runs automatically whenever dashboard-relevant files change on main, and can
+# also be triggered manually from the Actions tab.
+#
+# NOTE: In the repository settings (Settings → Pages) choose
+# "Deploy from a branch" → GitHub Actions, so this workflow is the publisher.
+#
+# Copy this file to .github/workflows/deploy_pages.yml in your repo.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'data/**'
+      - 'src/**'
+      - '.github/workflows/deploy_pages.yml'
+      - '.github/workflows/daily_insider_update.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deployment at a time; cancel stale ones.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Rebuild dashboard data (fresh timestamps + counts)
+        run: python main.py build-site
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

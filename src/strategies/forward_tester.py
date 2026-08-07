@@ -171,8 +171,9 @@ class ForwardTestAndPredictor:
         companies = self.um.get_filtered_companies(min_market_cap=self.min_market_cap)
         predictions: List[StockPredictionTrigger] = []
 
-        # Target date cutoff for recent predictions
-        now_dt = datetime(2026, 8, 6)
+        # Target date cutoff for recent predictions (uses current date so a
+        # manual or scheduled refresh always reflects the latest signals)
+        now_dt = datetime.now()
         cutoff_dt = now_dt - timedelta(days=recent_days)
 
         for comp in companies:
