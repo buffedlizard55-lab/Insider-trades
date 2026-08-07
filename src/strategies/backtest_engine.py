@@ -165,6 +165,7 @@ class BacktestEngine:
                 sigs = preloaded_signals[comp.ticker]
                 if year:
                     sigs = [s for s in sigs if s.date.startswith(str(year))]
+                sigs = [s for s in sigs if s.confidence_score >= min_confidence]
             else:
                 if preloaded_trades is not None and comp.ticker in preloaded_trades:
                     df = preloaded_trades[comp.ticker]
