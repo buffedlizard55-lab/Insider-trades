@@ -1,5 +1,0 @@
-strategy_name,holding_days,in_sample_years,in_sample_trades,in_sample_win_rate_pct,in_sample_sharpe,in_sample_roi_pct,out_sample_years,out_sample_trades,out_sample_win_rate_pct,out_sample_sharpe,out_sample_roi_pct,alpha_retention_ratio
-COMBINED,90,2021–2024,637,66.25,0.95,250.72,2025–2026,376,73.4,1.08,78.41,62.55
-INDUSTRY_MOMENTUM,90,2021–2024,593,65.94,0.95,230.49,2025–2026,355,74.37,1.1,76.72,66.57
-CONVICTION,90,2021–2024,330,65.45,0.93,127.52,2025–2026,173,71.68,1.05,32.9,51.6
-CLUSTER_BUY,90,2021–2024,130,71.54,1.25,74.36,2025–2026,85,81.18,1.28,25.61,68.88

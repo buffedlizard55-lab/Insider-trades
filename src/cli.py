@@ -34,33 +34,50 @@ def setup_logging(verbose: bool = False) -> None:
 
 
 def cmd_sources(args: argparse.Namespace) -> int:
-    """Prints exhaustive information on the official SEC EDGAR data source."""
+    """Prints official SEC EDGAR data-source citations."""
     doc = """
 ================================================================================
-         OFFICIAL, VERIFIABLE & UP-TO-DATE INSIDER TRADING SOURCE
+         OFFICIAL SEC EDGAR INSIDER-TRADING SOURCE (CITED)
 ================================================================================
 
 1. PRIMARY SOURCE: U.S. Securities and Exchange Commission (SEC) EDGAR
-   - Legal Mandate: Section 16(a) of the Securities Exchange Act of 1934
-   - Filing Window: Within 2 business days of the transaction date (SOX Section 403)
-   - Covered Insiders: Executive Officers (CEO, CFO, COO), Directors, and 10% Owners
-   - Data Format: Official structured XML documents (`ownershipDocument` DTD)
+   Section 16(a) of the Securities Exchange Act of 1934 requires officers,
+   directors, and >10% beneficial owners to report changes in beneficial
+   ownership. SOX Section 403 accelerated most Form 4 filings to before the
+   end of the second business day after the transaction.
+   Form 4 PDF / instructions: https://www.sec.gov/files/form4.pdf
 
-2. FORM 4 TRANSACTION CODES (KEY SIGNALS):
-   - `P` (Open Market Purchase): STRONGEST BULLISH SIGNAL. Insider risking personal cash.
-   - `S` (Open Market Sale): BEARISH / EXIT SIGNAL. Executing open-market sale.
-   - `A` (Award / Grant): NEUTRAL. Compensation award (Rule 16b-3(d)).
-   - `M` (Option Exercise): NEUTRAL. Conversion/exercise of derivative security.
-   - `F` (Tax Withholding): NEUTRAL. Withholding shares for tax liability.
+2. FORM 4 TRANSACTION CODES (from official Form 4 instructions, Item 8):
+   P  Open market or private purchase of non-derivative or derivative security
+   S  Open market or private sale of non-derivative or derivative security
+   A  Grant, award or other acquisition pursuant to Rule 16b-3(d)
+   M  Exercise or conversion of derivative security exempted under Rule 16b-3
+   F  Payment of exercise price or tax liability by delivering/withholding securities
+   G  Bona fide gift
+   D  Disposition to the issuer pursuant to Rule 16b-3(e)
+   Full code list: https://www.sec.gov/files/form4.pdf
 
-3. PROGRAMMATIC ACCESS ENDPOINTS:
-   - EDGAR Real-Time RSS Feed: https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=4&output=atom
-   - EDGAR Submissions API:    https://data.sec.gov/submissions/CIK{cik_10_digits}.json
-   - Company Tickers Mapping:   https://www.sec.gov/files/company_tickers.json
+3. OFFICIAL PROGRAMMATIC ENDPOINTS (SEC Developer Resources):
+   Latest Form 4 Atom feed:
+     https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=4&output=atom
+   Submissions API:
+     https://data.sec.gov/submissions/CIK{10-digit-cik}.json
+   Ticker → CIK map:
+     https://www.sec.gov/files/company_tickers.json
+   Daily indexes:
+     https://www.sec.gov/Archives/edgar/daily-index/
+   Developer policy:
+     https://www.sec.gov/about/developer-resources
 
-4. SEC COMPLIANCE & RATE LIMITS:
-   - Requires custom `User-Agent` header with contact email.
-   - Strictly limited to 10 requests per second.
+4. SEC FAIR ACCESS:
+   Custom User-Agent with a contact email is required
+     https://www.sec.gov/about/webmaster-frequently-asked-questions#user-agent
+   Automated clients must stay at or below 10 requests per second
+     https://www.sec.gov/about/developer-resources
+   Set SEC_USER_AGENT='YourAppName contact@yourdomain' before collecting.
+
+This toolkit does not ship a complete historical Form 4 database. Run
+`python main.py collect` against live EDGAR to pull official filings.
 ================================================================================
 """
     print(doc)
@@ -530,14 +547,14 @@ def cmd_analyze_top4(args: argparse.Namespace) -> int:
 def cmd_prices(args: argparse.Namespace) -> int:
     """
     Queries or updates the daily stock price database stored in data/market_prices/.
-    Displays real historical open, high, low, close, and volume prices.
+    Yahoo Finance when reachable; otherwise a labeled interpolated fallback.
     """
     from src.universe.price_database import PriceDatabase
 
     pdb = PriceDatabase()
     if args.seed or args.all:
         print(
-            f"Seeding & updating authoritative daily price CSV files in data/market_prices/..."
+            "Seeding daily price CSV files (Yahoo when reachable; otherwise interpolated fallback)..."
         )
         c = pdb.seed_all_daily_price_files(overwrite=args.overwrite)
         print(f"Successfully generated/updated {c} daily price CSV files across 2021-2026!")
@@ -560,7 +577,7 @@ def cmd_prices(args: argparse.Namespace) -> int:
     sub_df = df.tail(limit)
 
     print("\n================================================================================")
-    print(f"       AUTHORITATIVE DAILY STOCK PRICE HISTORY: {args.ticker.upper()} (LAST {limit} DAYS)")
+    print(f"       STORED DAILY PRICE SERIES: {args.ticker.upper()} (LAST {limit} DAYS)")
     print("================================================================================\n")
     print(
         tabulate(
@@ -825,8 +842,8 @@ def cmd_collect(args: argparse.Namespace) -> int:
     if args.all_years:
         years = [2026, 2025, 2024, 2023, 2022, 2021]
         print(
-            f"Collecting & organizing insider trades across ALL 6 YEARS (2021-2026) "
-            f"for companies with Market Cap >= ${args.min_market_cap/1e9:,.1f}B..."
+            f"Downloading official SEC EDGAR Form 4 filings for 2021-2026 "
+            f"(Market Cap filter >= ${args.min_market_cap/1e9:,.1f}B). Requires SEC_USER_AGENT."
         )
         total_all = 0
         for y in years:
@@ -845,8 +862,8 @@ def cmd_collect(args: argparse.Namespace) -> int:
         return 0
 
     print(
-        f"Collecting & organizing insider trades for Year {args.year} "
-        f"(Market Cap >= ${args.min_market_cap/1e9:,.1f}B)..."
+        f"Downloading official SEC EDGAR Form 4 filings for year {args.year} "
+        f"(Market Cap filter >= ${args.min_market_cap/1e9:,.1f}B). Requires SEC_USER_AGENT."
     )
     count = io.collect_and_organize_trades(
         year=args.year, min_market_cap=args.min_market_cap, overwrite=args.overwrite
@@ -867,8 +884,8 @@ def cmd_update(args: argparse.Namespace) -> int:
     if args.seed or args.all:
         yr_label = str(target_year) if target_year else "2021-2026 (All Years)"
         print(
-            f"Updating industry-organized Form 4 datasets for {yr_label} "
-            f"(Market Cap >= ${args.min_market_cap/1e9:,.1f}B)..."
+            f"Downloading official SEC EDGAR Form 4 filings for {yr_label} "
+            f"(Market Cap filter >= ${args.min_market_cap/1e9:,.1f}B). Requires SEC_USER_AGENT."
         )
         if target_year is None:
             years = [2026, 2025, 2024, 2023, 2022, 2021]
@@ -880,12 +897,12 @@ def cmd_update(args: argparse.Namespace) -> int:
                     overwrite=args.overwrite,
                 )
                 total_c += c
-            print(f"Successfully generated/updated {total_c} trade records across all industries!")
+            print(f"Stored {total_c} official Form 4 transaction rows (none were invented).")
         else:
             count = io.collect_and_organize_trades(
                 year=target_year, min_market_cap=args.min_market_cap, overwrite=args.overwrite
             )
-            print(f"Successfully generated/updated {count} trade records across all industries!")
+            print(f"Stored {count} official Form 4 transaction rows (none were invented).")
         df_sum = io.update_all_summaries(year=target_year)
         print(f"Updated {len(df_sum)} industry summary files.")
         return 0

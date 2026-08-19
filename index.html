@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Top 3 insider-trading strategies ranked by ROI — every trade behind the performance, plus the active and upcoming trades each strategy wants to place. Data from official SEC EDGAR Form 4 filings.">
-  <title>Insider Trades — Top 3 Strategy Dashboard</title>
+  <meta name="description" content="Research dashboard for official SEC EDGAR Form 4 insider filings. Not investment advice.">
+  <title>Insider Trades — SEC Form 4 research dashboard</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -15,91 +15,68 @@
         <span class="brand-mark" aria-hidden="true">📈</span>
         <span class="brand-text">
           <span class="brand-title">Insider Trades</span>
-          <span class="brand-sub">Top 3 Strategy Dashboard</span>
+          <span class="brand-sub">SEC Form 4 research dashboard</span>
         </span>
       </a>
       <div class="header-actions">
         <span class="updated-badge" id="updatedBadge" title="When the data on this page was last generated">Data: loading…</span>
-        <a class="btn btn-primary" id="refreshBtn" href="#" target="_blank" rel="noopener" title="One-click re-pull of the latest public insider trades from SEC EDGAR (runs in GitHub Actions)">
-          <span aria-hidden="true">↻</span> Refresh data
+        <a class="btn btn-primary" id="refreshBtn" href="https://github.com/buffedlizard55-lab/Insider-trades" target="_blank" rel="noopener">
+          <span aria-hidden="true">↗</span> GitHub repo
         </a>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <h1>The top 3 insider-trading strategies, <span class="accent">ranked by ROI</span>.</h1>
+        <h1>Official <span class="accent">SEC EDGAR Form 4</span> filings, organized for research.</h1>
         <p class="lede">
-          Every executive trade at US companies above $1B market cap is reported to the
-          SEC on <b>Form 4</b> within two business days. We scan all of those filings
-          (2021–2026), backtest the best entry strategies, and show you — in plain English —
-          what each strategy would buy today.
+          U.S. officers, directors, and 10%+ owners must report equity transactions on
+          <b>Form 4</b> within two business days
+          (<a href="https://www.sec.gov/files/form4.pdf" target="_blank" rel="noopener">SEC Form 4 instructions</a>).
+          This page shows only filings that have been downloaded from EDGAR.
+          It is a curated 89-name large-cap <em>sample</em>, not the complete S&amp;P 500 or Nasdaq.
         </p>
         <div class="guide">
           <div class="guide-step">
             <span class="guide-num">1</span>
-            <div><b>🎯 Active &amp; upcoming trades</b> — the trades each strategy wants to place <em>right now</em>, with entry, take-profit and stop-loss prices.</div>
+            <div><b>Official source</b> — <a href="https://www.sec.gov/edgar" target="_blank" rel="noopener">SEC EDGAR</a>. Transaction codes come from Form 4 Item 8.</div>
           </div>
           <div class="guide-step">
             <span class="guide-num">2</span>
-            <div><b>📈 Trades that drove the ROI</b> — every single backtested trade behind the strategy’s performance, all the way back to 2021.</div>
+            <div><b>Collect live filings</b> — <code>export SEC_USER_AGENT=…</code> then <code>python main.py collect</code>.</div>
           </div>
           <div class="guide-step">
             <span class="guide-num">3</span>
-            <div><b>↻ Refresh data</b> — one click re-pulls the latest public insider trades from the SEC. The page also auto-updates every weekday.</div>
+            <div><b>Backtests are simulations</b> on collected rows. They are not audited live performance.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Overview cards -->
-    <section class="container" aria-label="Top 3 strategies overview">
-      <h2 class="section-title">The top 3 strategies <span class="section-sub">(backtested on 2021–2026 SEC Form 4 data, 90-day holding period)</span></h2>
+    <section class="container" aria-label="Strategy overview">
+      <h2 class="section-title">Research strategies <span class="section-sub">(run locally on collected Form 4s — empty until you collect)</span></h2>
       <div class="cards" id="strategyCards">
         <div class="loading">Loading strategy overview…</div>
       </div>
     </section>
 
-    <!-- Per-strategy sections (rendered by app.js) -->
     <div id="strategySections"></div>
 
-    <!-- Glossary -->
     <section class="container glossary" aria-label="Beginner’s glossary">
-      <h2 class="section-title">Not sure what a term means? <span class="section-sub">Quick glossary, no jargon</span></h2>
+      <h2 class="section-title">Glossary</h2>
       <details>
-        <summary><b>ROI</b> (Return on Investment)</summary>
-        <p>How much money the strategy made. +329% means a $100,000 starting portfolio grew to $429,134 after the strategy’s 1,013 trades over 6 years.</p>
+        <summary><b>Form 4</b></summary>
+        <p>The official SEC filing for a change in beneficial ownership by a Section 16 insider. Instructions: <a href="https://www.sec.gov/files/form4.pdf" target="_blank" rel="noopener">sec.gov/files/form4.pdf</a>.</p>
       </details>
       <details>
-        <summary><b>Win rate</b></summary>
-        <p>The share of trades that made money. 68.9% means 698 out of 1,013 trades finished with a profit.</p>
+        <summary><b>Code P / S / A / M / F</b></summary>
+        <p>Official Form 4 Item 8 codes: P = open-market or private purchase; S = open-market or private sale; A = grant/award under Rule 16b-3(d); M = derivative exercise/conversion; F = share withholding for tax or exercise price.</p>
       </details>
       <details>
-        <summary><b>Profit factor</b></summary>
-        <p>Total dollars won ÷ total dollars lost. Above 1.0 means the strategy makes more than it loses; above 2.0 is considered very strong.</p>
-      </details>
-      <details>
-        <summary><b>Sharpe ratio</b></summary>
-        <p>A “reward per unit of risk” score. Higher is better — 0.9+ is strong for a stock strategy, and this is the average return per trade compared with how much the returns bounce around.</p>
-      </details>
-      <details>
-        <summary><b>Max drawdown</b></summary>
-        <p>The worst dip your portfolio would have experienced along the way. 33% means the portfolio fell 33% from its peak at the worst moment before recovering.</p>
-      </details>
-      <details>
-        <summary><b>Entry price / Take-profit / Stop-loss</b></summary>
-        <p><b>Entry</b> is the price to buy near. <b>Take-profit</b> is the price where the trade locks in gains (+35%). <b>Stop-loss</b> is the price where the trade cuts losses (−12%) so a bad trade can’t run away from you.</p>
-      </details>
-      <details>
-        <summary><b>Confidence score</b></summary>
-        <p>How strong the insider signal is (70–95%). A 95% signal means a CEO or CFO personally bought $1M+ of their own company’s stock on the open market.</p>
-      </details>
-      <details>
-        <summary><b>SEC EDGAR Form 4</b></summary>
-        <p>The official US government filing that insiders (CEOs, CFOs, directors, 10% owners) must submit within two business days of every trade they make in their own company’s stock. Every signal on this page links back to the original filing.</p>
+        <summary><b>ROI / Sharpe / win rate</b></summary>
+        <p>Simulation statistics from the research backtester. They are not live brokerage results and are blank until official Form 4 rows have been collected.</p>
       </details>
     </section>
   </main>
@@ -107,15 +84,15 @@
   <footer class="site-footer">
     <div class="container">
       <p class="footer-note">
-        <b>Educational research only — not financial advice.</b> Historical trades are backtested
-        simulations (90-day holding period with 12% stop-loss / 40% take-profit rules) based on
-        official SEC EDGAR Form 4 filings and stored price data. Insider transactions are reported
-        with a two-business-day lag. Past performance never guarantees future results.
+        <b>Educational research only — not financial advice.</b>
+        Insider transactions are taken from official
+        <a href="https://www.sec.gov/edgar" target="_blank" rel="noopener">SEC EDGAR Form 4</a> filings.
+        Prices, when shown, are a local cache (Yahoo if fetched; otherwise an interpolated fallback — not an exchange official print).
       </p>
       <p class="footer-meta">
-        Data source: <a href="https://www.sec.gov/edgar" target="_blank" rel="noopener">SEC EDGAR Form 4 filings</a> ·
-        Universe: NASDAQ &amp; S&amp;P 500 companies with market cap &gt; $1B (2021–2026) ·
-        Auto-refresh: every weekday at 22:00 UTC · <a href="https://github.com/buffedlizard55-lab/Insider-trades" target="_blank" rel="noopener">GitHub repo</a>
+        Data source: <a href="https://www.sec.gov/edgar" target="_blank" rel="noopener">SEC EDGAR</a> ·
+        Universe: curated 89-name large-cap sample ·
+        <a href="https://github.com/buffedlizard55-lab/Insider-trades" target="_blank" rel="noopener">GitHub repo</a>
       </p>
     </div>
   </footer>

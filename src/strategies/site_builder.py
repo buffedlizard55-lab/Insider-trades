@@ -86,7 +86,12 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
 def _read_csv(path: str) -> pd.DataFrame:
-    return pd.read_csv(path)
+    if not os.path.exists(path):
+        return pd.DataFrame()
+    try:
+        return pd.read_csv(path)
+    except Exception:
+        return pd.DataFrame()
 
 
 def _iso_now() -> str:
@@ -94,13 +99,39 @@ def _iso_now() -> str:
 
 
 def _kpis_from_tracker(tracker: pd.DataFrame, strategy: str) -> Dict[str, Any]:
-    """Pulls the official KPI row for a strategy's 90-day configuration."""
+    """Pulls the KPI row for a strategy's 90-day configuration, if present."""
+    if tracker.empty or "strategy" not in tracker.columns:
+        return {
+            "holding_days": 90,
+            "total_trades": 0,
+            "win_rate_pct": 0.0,
+            "profit_factor": 0.0,
+            "sharpe_ratio": 0.0,
+            "max_drawdown_pct": 0.0,
+            "total_return_pct": 0.0,
+            "final_equity": 100000.0,
+            "initial_capital": 100000.0,
+            "stop_loss_pct": 12.0,
+            "take_profit_pct": 40.0,
+        }
     row = tracker[
         (tracker["strategy"].str.upper() == strategy)
         & (tracker["holding_days"] == 90)
     ]
     if row.empty:
-        return {}
+        return {
+            "holding_days": 90,
+            "total_trades": 0,
+            "win_rate_pct": 0.0,
+            "profit_factor": 0.0,
+            "sharpe_ratio": 0.0,
+            "max_drawdown_pct": 0.0,
+            "total_return_pct": 0.0,
+            "final_equity": 100000.0,
+            "initial_capital": 100000.0,
+            "stop_loss_pct": 12.0,
+            "take_profit_pct": 40.0,
+        }
     r = row.iloc[0]
     return {
         "holding_days": int(r["holding_days"]),
@@ -200,6 +231,17 @@ def build_site_data(
 
     tracker = _read_csv(os.path.join(data_dir, "full_dataset_backtest_tracker.csv"))
     predictions = _read_csv(os.path.join(data_dir, "active_entry_exit_predictions.csv"))
+    if predictions.empty:
+        predictions = pd.DataFrame(
+            columns=[
+                "action", "strategy_source", "confidence_score", "ticker",
+                "company_name", "sector", "industry", "trigger_date",
+                "recommended_entry_price", "target_take_profit_price",
+                "target_stop_loss_price", "recommended_holding_days",
+                "expected_alpha_pct", "trigger_reason", "trigger_accession",
+                "trigger_url",
+            ]
+        )
 
     overview: List[Dict[str, Any]] = []
     source_files: List[str] = []
@@ -208,7 +250,7 @@ def build_site_data(
     for cfg in STRATEGIES:
         key = cfg["key"]
         trades_df = _read_csv(os.path.join(data_dir, f"{cfg['csv_name']}.csv"))
-        trades = _trade_rows(trades_df)
+        trades = _trade_rows(trades_df) if not trades_df.empty else []
         active = _active_rows(predictions, ACTIVE_RULES[key])
         kpis = _kpis_from_tracker(tracker, cfg["name"])
         kpis["winning_trades"] = sum(1 for t in trades if t["pnl_dollar"] > 0)
@@ -257,8 +299,10 @@ def build_site_data(
         "generated_at": _iso_now(),
         "site_title": "Insider Trades — Top 3 Strategy Dashboard",
         "universe_note": (
-            "All data derives from official SEC EDGAR Form 4 filings for NASDAQ & "
-            "S&P 500 companies with a market cap above $1B (2021-2026)."
+            "Insider transactions come only from official SEC EDGAR Form 4 filings "
+            "after `python main.py collect`. This repository ships a curated 89-name "
+            "large-cap sample (not the complete S&P 500 or Nasdaq). Backtests are "
+            "research simulations on collected filings, not audited live performance."
         ),
         "source_files": sorted(set(source_files)),
         "strategy_count": len(overview),
