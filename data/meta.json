@@ -1,1 +1,7 @@
-{"generated_at":"2026-08-07T22:40:29Z","site_title":"Insider Trades \u2014 Top 3 Strategy Dashboard","universe_note":"All data derives from official SEC EDGAR Form 4 filings for NASDAQ & S&P 500 companies with a market cap above $1B (2021-2026).","source_files":["data/top4_COMBINED_90D_trade_log.csv","data/top4_COMBINED_90D_trade_log.json","data/top4_CONVICTION_90D_trade_log.csv","data/top4_CONVICTION_90D_trade_log.json","data/top4_INDUSTRY_MOMENTUM_90D_trade_log.csv","data/top4_INDUSTRY_MOMENTUM_90D_trade_log.json"],"strategy_count":3}
+{
+  "generated_at": "2026-08-18T00:00:00Z",
+  "site_title": "Insider Trades — SEC Form 4 research dashboard",
+  "universe_note": "Insider transactions come only from official SEC EDGAR Form 4 filings after `python main.py collect`. This repository ships a curated 89-name large-cap sample (not the complete S&P 500 or Nasdaq). Backtests are research simulations on collected filings, not audited live performance.",
+  "source_files": [],
+  "strategy_count": 3
+}

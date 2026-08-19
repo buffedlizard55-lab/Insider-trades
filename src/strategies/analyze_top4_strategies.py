@@ -98,7 +98,7 @@ class Top4StrategiesAnalyzer:
         lines = [
             "# Top 4 Performing Quantitative Insider Strategies: Individual Analysis & Verified Trade Logs",
             "",
-            "This report provides a deep-dive individual analysis of the **Top 4 Performing Strategies** identified across our 6-year historical dataset (**2021–2026**, 4,856 Form 4 transactions across all NASDAQ and S&P 500 companies with a **market cap over $1 Billion**).",
+            "This report provides a deep-dive individual analysis of the **Top 4 Performing Strategies** identified across our 6-year historical dataset (**2021–2026**, collected official Form 4 transactions in the curated large-cap sample with a **market cap over $1 Billion**).",
             "",
             "Each section begins with the best performing strategy, displaying easy-to-read tables of trade entries, exits, holding periods, Return %, P&L, trigger reasons, and links to official SEC EDGAR Form 4 filings and local repository datasets.",
             "",

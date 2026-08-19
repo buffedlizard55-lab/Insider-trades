@@ -1,1 +1,74 @@
-[{"key":"combined","name":"COMBINED","rank":1,"tagline":"Every high-conviction insider signal in one strategy","description":"Enters a trade whenever insiders show strong conviction: a C-Suite (CEO/CFO) open-market buy over $100K, 2+ insiders buying within 14 days, or heavy open-market selling that historically marks good entry points. Captures the broadest set of signals, which is why it delivered the highest ROI of all strategies tested.","kpis":{"holding_days":90,"total_trades":1013,"win_rate_pct":68.9,"profit_factor":3.29,"sharpe_ratio":0.93,"max_drawdown_pct":33.22,"total_return_pct":329.13,"final_equity":429134.0,"initial_capital":100000.0,"stop_loss_pct":12.0,"take_profit_pct":40.0,"winning_trades":698,"losing_trades":315},"active_count":105,"trade_count":1013},{"key":"industry_momentum","name":"INDUSTRY_MOMENTUM","rank":2,"tagline":"High-confidence signals in accumulation industries","description":"Trades only the highest-confidence insider signals (75%+ confidence) that appear while their industry is in an accumulation phase. Fewer, better-timed trades with the strongest win rate of the top three.","kpis":{"holding_days":90,"total_trades":948,"win_rate_pct":69.09,"profit_factor":3.32,"sharpe_ratio":0.93,"max_drawdown_pct":32.78,"total_return_pct":307.21,"final_equity":407209.0,"initial_capital":100000.0,"stop_loss_pct":12.0,"take_profit_pct":40.0,"winning_trades":655,"losing_trades":293},"active_count":95,"trade_count":948},{"key":"conviction","name":"CONVICTION","rank":3,"tagline":"C-Suite conviction buys only (CEO / CFO)","description":"The purest signal: only open-market purchases of $100,000+ made by a Chief Executive Officer or Chief Financial Officer with their own money. A smaller, cleaner book of trades built on the most trusted insider signal.","kpis":{"holding_days":90,"total_trades":503,"win_rate_pct":67.59,"profit_factor":3.05,"sharpe_ratio":0.9,"max_drawdown_pct":24.6,"total_return_pct":160.42,"final_equity":260420.0,"initial_capital":100000.0,"stop_loss_pct":12.0,"take_profit_pct":40.0,"winning_trades":340,"losing_trades":163},"active_count":87,"trade_count":503}]
+[
+  {
+    "key": "combined",
+    "name": "COMBINED",
+    "rank": 1,
+    "tagline": "All research buy signals on collected Form 4s",
+    "description": "Research rule that enters when a collected official Form 4 shows a C-Suite open-market purchase (code P), a multi-insider cluster, or a heavy-sale exit. Empty until you run `python main.py collect` against live EDGAR.",
+    "kpis": {
+      "holding_days": 90,
+      "total_trades": 0,
+      "win_rate_pct": 0,
+      "profit_factor": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown_pct": 0,
+      "total_return_pct": 0,
+      "final_equity": 100000,
+      "initial_capital": 100000,
+      "stop_loss_pct": 12,
+      "take_profit_pct": 40,
+      "winning_trades": 0,
+      "losing_trades": 0
+    },
+    "active_count": 0,
+    "trade_count": 0
+  },
+  {
+    "key": "industry_momentum",
+    "name": "INDUSTRY_MOMENTUM",
+    "rank": 2,
+    "tagline": "Higher-confidence signals only",
+    "description": "Research rule that keeps only collected signals with confidence ≥ 75. Empty until official Form 4 rows are downloaded from EDGAR.",
+    "kpis": {
+      "holding_days": 90,
+      "total_trades": 0,
+      "win_rate_pct": 0,
+      "profit_factor": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown_pct": 0,
+      "total_return_pct": 0,
+      "final_equity": 100000,
+      "initial_capital": 100000,
+      "stop_loss_pct": 12,
+      "take_profit_pct": 40,
+      "winning_trades": 0,
+      "losing_trades": 0
+    },
+    "active_count": 0,
+    "trade_count": 0
+  },
+  {
+    "key": "conviction",
+    "name": "CONVICTION",
+    "rank": 3,
+    "tagline": "CEO/CFO open-market purchases (code P)",
+    "description": "Research rule limited to official Form 4 code-P purchases by a CEO or CFO of $100,000+. Empty until those filings are collected from EDGAR.",
+    "kpis": {
+      "holding_days": 90,
+      "total_trades": 0,
+      "win_rate_pct": 0,
+      "profit_factor": 0,
+      "sharpe_ratio": 0,
+      "max_drawdown_pct": 0,
+      "total_return_pct": 0,
+      "final_equity": 100000,
+      "initial_capital": 100000,
+      "stop_loss_pct": 12,
+      "take_profit_pct": 40,
+      "winning_trades": 0,
+      "losing_trades": 0
+    },
+    "active_count": 0,
+    "trade_count": 0
+  }
+]

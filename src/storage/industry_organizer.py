@@ -322,150 +322,46 @@ class IndustryOrganizer:
         year: int = 2026,
         min_market_cap: float = 1_000_000_000.0,
         overwrite: bool = False,
+        max_filings_per_company: int = 40,
     ) -> int:
         """
-        Collects and organizes insider trades for all companies with a market cap
-        exceeding min_market_cap ($1B default), for the specified target year.
-        Can be called repeatedly for 2026, 2025, 2024, etc.
-        """
-        import random
+        Download official SEC EDGAR Form 4 filings for universe companies and
+        store the parsed transactions under data/industries/.
 
-        random.seed(42 + year)  # Consistent seed per year so data is deterministic
+        Never invents insider names, accession numbers, prices, or trades.
+        Requires network access to data.sec.gov / www.sec.gov and a compliant
+        SEC_USER_AGENT environment variable (app name + contact email).
+        """
+        from src.edgar.client import EdgarClient
+
+        client = EdgarClient()
         companies = self.um.get_by_market_cap(min_market_cap)
         total_records = 0
 
-        titles = [
-            "Chief Executive Officer",
-            "Chief Financial Officer",
-            "Chief Operating Officer",
-            "General Counsel",
-            "Director",
-            "Director",
-            "Executive Vice President",
-        ]
-
-        # Define date range for target year
-        # For 2026, up to current date 2026-08-06; for earlier years, Jan 1 to Dec 31
-        start_date = datetime(year, 1, 2)
-        if year == 2026:
-            end_date = datetime(2026, 8, 5)
-        else:
-            end_date = datetime(year, 12, 30)
-
-        days_in_range = max(1, (end_date - start_date).days)
-
         for comp in companies:
-            filepath = self.get_ticker_filepath(comp.ticker)
-            if os.path.exists(filepath) and not overwrite:
-                # Check if we already have records for this year in the file
-                try:
-                    df_ex = pd.read_csv(filepath)
-                    if "transaction_date" in df_ex.columns:
-                        existing_years = pd.to_datetime(
-                            df_ex["transaction_date"], errors="coerce"
-                        ).dt.year.unique()
-                        if year in existing_years:
-                            total_records += len(
-                                df_ex[
-                                    pd.to_datetime(
-                                        df_ex["transaction_date"], errors="coerce"
-                                    ).dt.year
-                                    == year
-                                ]
-                            )
-                            continue
-                except Exception:
-                    pass
+            try:
+                filings = client.get_recent_form4_filings_for_company(
+                    comp.cik, max_filings=max_filings_per_company, year=year
+                )
+            except Exception as exc:
+                logger.warning(
+                    "SEC Form 4 collect failed for %s (CIK %s): %s",
+                    comp.ticker,
+                    comp.cik,
+                    exc,
+                )
+                continue
 
-            high_conviction = comp.industry_slug in (
-                "semiconductors",
-                "biotechnology",
-                "software_infrastructure",
-                "aerospace_defense",
-                "credit_services",
-            )
-
-            num_trades = random.randint(4, 14)
-            company_trades = []
-
-            has_cluster_buy = comp.ticker in (
-                "NVDA",
-                "AAPL",
-                "MSFT",
-                "AMGN",
-                "V",
-                "JPM",
-                "TSLA",
-                "AMD",
-            )
-
-            for i in range(num_trades):
-                from src.universe.market_data import HistoricalMarketData
-                offset_days = random.randint(0, days_in_range - 1)
-                raw_dt = end_date - timedelta(days=offset_days)
-                txn_date = HistoricalMarketData.get_next_trading_day(raw_dt.strftime("%Y-%m-%d"))
-                filing_date = HistoricalMarketData.get_next_trading_day(txn_date, 1)
-
-                title = random.choice(titles)
-                is_off = "Chief" in title or "President" in title
-                is_dir = "Director" in title
-
-                if high_conviction or has_cluster_buy:
-                    code = random.choices(["P", "S", "M", "A"], weights=[45, 30, 15, 10])[
-                        0
-                    ]
-                else:
-                    code = random.choices(["P", "S", "M", "A"], weights=[20, 55, 15, 10])[
-                        0
-                    ]
-
-                from src.universe.price_database import get_price_db
-                pdb = get_price_db()
-                price = pdb.get_daily_close(comp.ticker, txn_date)
-                shares = random.randint(5, 50) * 100
-                total_val = round(shares * price, 2)
-                acq_disp = "A" if code in ("P", "A", "M") else "D"
-
-                yr_short = str(year)[-2:]
-                trade_rec = {
-                    "ticker": comp.ticker,
-                    "company_name": comp.company_name,
-                    "cik": comp.cik,
-                    "sector": comp.sector,
-                    "industry": comp.industry,
-                    "filing_date": filing_date,
-                    "transaction_date": txn_date,
-                    "reporting_owner_cik": f"0001{random.randint(100000, 999999)}",
-                    "reporting_owner_name": f"Insider_{comp.ticker}_{year}_{i+1}",
-                    "officer_title": title,
-                    "is_director": is_dir,
-                    "is_officer": is_off,
-                    "is_ten_percent_owner": False,
-                    "transaction_code": code,
-                    "acquired_disposed_code": acq_disp,
-                    "shares": float(shares),
-                    "price_per_share": float(price),
-                    "total_value": float(total_val),
-                    "shares_owned_following": float(shares * random.randint(10, 50)),
-                    "direct_or_indirect": "D",
-                    "is_open_market_buy": code == "P",
-                    "is_open_market_sell": code == "S",
-                    "accession_number": f"{comp.cik}-{yr_short}-{str(i+1).zfill(6)}",
-                }
-                company_trades.append(trade_rec)
-
-            if has_cluster_buy:
-                from src.universe.market_data import HistoricalMarketData
-                raw_cd = f"{year}-07-20" if year == 2026 else f"{year}-06-15"
-                cluster_date = HistoricalMarketData.get_next_trading_day(raw_cd)
-                filing_date = HistoricalMarketData.get_next_trading_day(cluster_date, 1)
-                for officer_title, name_suffix in [
-                    ("Chief Executive Officer", "CEO_Conviction"),
-                    ("Chief Financial Officer", "CFO_Conviction"),
-                ]:
-                    shares = 5000
-                    price = pdb.get_daily_close(comp.ticker, cluster_date)
-                    yr_short = str(year)[-2:]
+            company_trades: List[Dict[str, Any]] = []
+            for filing in filings:
+                for txn in filing.transactions:
+                    txn_year = None
+                    try:
+                        txn_year = int(str(txn.transaction_date)[:4])
+                    except (TypeError, ValueError):
+                        pass
+                    if year is not None and txn_year is not None and txn_year != year:
+                        continue
                     company_trades.append(
                         {
                             "ticker": comp.ticker,
@@ -473,29 +369,35 @@ class IndustryOrganizer:
                             "cik": comp.cik,
                             "sector": comp.sector,
                             "industry": comp.industry,
-                            "filing_date": filing_date,
-                            "transaction_date": cluster_date,
-                            "reporting_owner_cik": "0001999999",
-                            "reporting_owner_name": f"{comp.ticker}_{name_suffix}",
-                            "officer_title": officer_title,
-                            "is_director": True,
-                            "is_officer": True,
-                            "is_ten_percent_owner": False,
-                            "transaction_code": "P",
-                            "acquired_disposed_code": "A",
-                            "shares": float(shares),
-                            "price_per_share": float(price),
-                            "total_value": float(round(shares * price, 2)),
-                            "shares_owned_following": 500000.0,
-                            "direct_or_indirect": "D",
-                            "is_open_market_buy": True,
-                            "is_open_market_sell": False,
-                            "accession_number": f"{comp.cik}-{yr_short}-99999{name_suffix[:3]}",
+                            "filing_date": txn.filing_date,
+                            "transaction_date": txn.transaction_date,
+                            "reporting_owner_cik": txn.reporting_owner_cik,
+                            "reporting_owner_name": txn.reporting_owner_name,
+                            "officer_title": txn.officer_title,
+                            "is_director": txn.is_director,
+                            "is_officer": txn.is_officer,
+                            "is_ten_percent_owner": txn.is_ten_percent_owner,
+                            "transaction_code": txn.transaction_code,
+                            "acquired_disposed_code": txn.acquired_disposed_code,
+                            "shares": float(txn.shares),
+                            "price_per_share": float(txn.price_per_share),
+                            "total_value": float(txn.total_value),
+                            "shares_owned_following": float(txn.shares_owned_following),
+                            "direct_or_indirect": txn.direct_or_indirect,
+                            "is_open_market_buy": bool(txn.is_open_market_buy),
+                            "is_open_market_sell": bool(txn.is_open_market_sell),
+                            "accession_number": txn.accession_number,
+                            "source_url": EdgarClient.filing_index_url(
+                                comp.cik, txn.accession_number
+                            )
+                            if txn.accession_number
+                            else "",
                         }
                     )
 
-            self.add_trades(comp.ticker, company_trades, append=True)
-            total_records += len(company_trades)
+            if company_trades:
+                self.add_trades(comp.ticker, company_trades, append=not overwrite)
+                total_records += len(company_trades)
 
         self.update_all_summaries(year=year)
         return total_records

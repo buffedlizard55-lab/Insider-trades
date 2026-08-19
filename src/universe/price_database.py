@@ -5,7 +5,7 @@ in structured CSV files on disk:
   data/market_prices/{TICKER}_daily_prices.csv
 
 Supports fetching live pricing from public APIs (Yahoo Finance / Stooq) when online,
-and an authoritative historical price cache/seeder when in restricted network environments.
+and an interpolated fallback cache when live Yahoo/Stooq history cannot be fetched.
 """
 
 import os
@@ -175,11 +175,9 @@ class PriceDatabase:
         overwrite: bool = False,
     ) -> int:
         """
-        Generates and stores authoritative historical daily price CSV files for
-        every company in our NASDAQ and S&P 500 universe across all 1,405 trading days
-        from 2021-01-04 to 2026-08-06.
-
-        Ensures accurate pricing (e.g. AVGO ~$248 in 2026, AMD ~$155, NVDA ~$145, MSFT ~$448).
+        Writes daily price CSV files. Prefers a live Yahoo Finance chart fetch;
+        if that fails, writes a labeled interpolated fallback series.
+        Fallback files are not official exchange prints.
         Returns the number of ticker CSV files created or updated.
         """
         from src.universe.universe_manager import UniverseManager
@@ -204,7 +202,7 @@ class PriceDatabase:
                 count += 1
                 continue
 
-            # Otherwise use authoritative historical price generator across all trading days
+            # Otherwise write a labeled interpolated fallback (not an official print)
             rows = self._generate_authoritative_price_series(t)
             df = pd.DataFrame(rows)
             df.to_csv(fpath, index=False)

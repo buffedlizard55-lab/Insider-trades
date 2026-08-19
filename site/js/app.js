@@ -382,8 +382,9 @@ function buildHistoryTable(strategy, rows, kpis) {
   container.appendChild(header);
 
   container.appendChild(el("div", "table-sub",
-    `All ${rows.length.toLocaleString()} backtested trades (2021–2026) behind the +${kpis.total_return_pct.toFixed(2)}% ROI — ` +
-    `simulated at ${kpis.holding_days}-day holding with ${kpis.stop_loss_pct}% stop-loss / ${kpis.take_profit_pct}% take-profit.`));
+    `All ${rows.length.toLocaleString()} simulated trades on collected official Form 4 rows ` +
+    `(${Number(kpis.total_return_pct || 0).toFixed(2)}% simulated ROI; ` +
+    `${kpis.holding_days || 90}-day hold, ${kpis.stop_loss_pct || 12}% stop / ${kpis.take_profit_pct || 40}% target).`));
 
   const toolbar = el("div", "toolbar");
   const search = el("input", "search-input");
@@ -560,7 +561,7 @@ function buildOverviewCards(strategies) {
   wrap.innerHTML = "";
 
   strategies.forEach((s) => {
-    const k = s.kpis;
+    const k = s.kpis || {};
     const card = el("div", "card");
 
     const rank = el("span", `card-rank ${RANK_CARD[s.rank]}`, RANK_TEXT[s.rank]);
@@ -569,13 +570,13 @@ function buildOverviewCards(strategies) {
     card.appendChild(el("p", "card-tagline", s.tagline));
 
     const roi = el("div", "card-roi");
-    roi.innerHTML = `${fmtPct(k.total_return_pct)} <small>ROI · 2021–2026</small>`;
+    roi.innerHTML = `${fmtPct(k.total_return_pct || 0)} <small>simulated ROI (collected Form 4s only)</small>`;
     card.appendChild(roi);
 
     const stats = el("div", "card-stats");
-    stats.appendChild(el("span", "stat-chip", `Win rate <b>${fmtPct(k.win_rate_pct, false)}</b>`));
-    stats.appendChild(el("span", "stat-chip", `Trades <b>${k.total_trades.toLocaleString()}</b>`));
-    stats.appendChild(el("span", "stat-chip", `Sharpe <b>${k.sharpe_ratio.toFixed(2)}</b>`));
+    stats.appendChild(el("span", "stat-chip", `Win rate <b>${fmtPct(k.win_rate_pct || 0, false)}</b>`));
+    stats.appendChild(el("span", "stat-chip", `Trades <b>${Number(k.total_trades || 0).toLocaleString()}</b>`));
+    stats.appendChild(el("span", "stat-chip", `Sharpe <b>${Number(k.sharpe_ratio || 0).toFixed(2)}</b>`));
     stats.appendChild(el("span", "stat-chip", `Active <b>${s.active_count}</b>`));
     card.appendChild(stats);
 

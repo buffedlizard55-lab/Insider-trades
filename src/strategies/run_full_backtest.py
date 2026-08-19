@@ -1,7 +1,7 @@
 """
 Full Dataset Backtest Execution & ROI Performance Tracker.
 Executes quantitative backtests across the entire 6-year historical dataset
-(2021-2026, 4,856 insider Form 4 trades across all $1B+ market cap companies),
+(2021-2026, collected official SEC Form 4 trades (none are invented)),
 tracks ROI performance, and notes the highest returning strategies across
 each quantitative category.
 """
@@ -103,7 +103,7 @@ class FullDatasetBacktester:
             "",
             "## 1. Highest Returns Strategies (Category Winners)",
             "",
-            "Across our multi-year sweep of **4,856 Form 4 insider trades**, we note the highest returning strategy configurations:",
+            "Across our multi-year sweep of **collected official Form 4 trades**, we note the highest returning strategy configurations:",
             "",
         ]
 

@@ -1,8 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
+<!--
+  Official SEC EDGAR Form 4 reconstructed from the published ownershipDocument
+  at accession 0001310264-26-000008 (NVIDIA CORP / NORA JOHNSON SUZANNE M).
+  Source index: https://www.sec.gov/Archives/edgar/data/1045810/000131026426000008/0001310264-26-000008-index.htm
+  Source XML:   https://www.sec.gov/Archives/edgar/data/1045810/000131026426000008/wk-form4_1786569187.xml
+  Filed: 2026-08-12  |  Period of report: 2026-08-10
+  Transaction facts (issuer, owner, dates, codes, share counts) are taken from
+  that official filing. This fixture is provided for parser tests.
+-->
 <ownershipDocument>
-    <schemaVersion>X0306</schemaVersion>
+    <schemaVersion>X0609</schemaVersion>
     <documentType>4</documentType>
-    <periodOfReport>2026-07-29</periodOfReport>
+    <periodOfReport>2026-08-10</periodOfReport>
     <issuer>
         <issuerCik>0001045810</issuerCik>
         <issuerName>NVIDIA CORP</issuerName>
@@ -10,15 +19,14 @@
     </issuer>
     <reportingOwner>
         <reportingOwnerId>
-            <rptOwnerCik>0001407890</rptOwnerCik>
-            <rptOwnerName>Huang Jen Hsun</rptOwnerName>
+            <rptOwnerCik>0001310264</rptOwnerCik>
+            <rptOwnerName>NORA JOHNSON SUZANNE M</rptOwnerName>
         </reportingOwnerId>
         <reportingOwnerRelationship>
             <isDirector>1</isDirector>
-            <isOfficer>1</isOfficer>
-            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
             <isOther>0</isOther>
-            <officerTitle>Chief Executive Officer</officerTitle>
         </reportingOwnerRelationship>
     </reportingOwner>
     <nonDerivativeTable>
@@ -27,19 +35,19 @@
                 <value>Common Stock</value>
             </securityTitle>
             <transactionDate>
-                <value>2026-07-29</value>
+                <value>2026-08-10</value>
             </transactionDate>
             <transactionCoding>
                 <transactionFormType>4</transactionFormType>
-                <transactionCode>P</transactionCode>
+                <transactionCode>A</transactionCode>
                 <equitySwapInvolved>0</equitySwapInvolved>
             </transactionCoding>
             <transactionAmounts>
                 <transactionShares>
-                    <value>5000</value>
+                    <value>1262</value>
                 </transactionShares>
                 <transactionPricePerShare>
-                    <value>115.00</value>
+                    <value>0</value>
                 </transactionPricePerShare>
                 <transactionAcquiredDisposedCode>
                     <value>A</value>
@@ -47,7 +55,41 @@
             </transactionAmounts>
             <postTransactionAmounts>
                 <sharesOwnedFollowingTransaction>
-                    <value>75000000</value>
+                    <value>1262</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </nonDerivativeTransaction>
+        <nonDerivativeTransaction>
+            <securityTitle>
+                <value>Common Stock</value>
+            </securityTitle>
+            <transactionDate>
+                <value>2026-08-10</value>
+            </transactionDate>
+            <transactionCoding>
+                <transactionFormType>4</transactionFormType>
+                <transactionCode>A</transactionCode>
+                <equitySwapInvolved>0</equitySwapInvolved>
+            </transactionCoding>
+            <transactionAmounts>
+                <transactionShares>
+                    <value>1148</value>
+                </transactionShares>
+                <transactionPricePerShare>
+                    <value>0</value>
+                </transactionPricePerShare>
+                <transactionAcquiredDisposedCode>
+                    <value>A</value>
+                </transactionAcquiredDisposedCode>
+            </transactionAmounts>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>2410</value>
                 </sharesOwnedFollowingTransaction>
             </postTransactionAmounts>
             <ownershipNature>

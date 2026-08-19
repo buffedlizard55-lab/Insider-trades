@@ -1,24 +1,28 @@
 """
-Realistic Reference Stock Price Profiles for NASDAQ and S&P 500 Equities ($1B+ Market Cap).
-Ensures that stock price simulations and active predictions match real-world market prices
-(e.g., AMD over $400, NVDA ~$145 post-split, AAPL ~$230, MSFT ~$445, LLY ~$880, META ~$535).
+Approximate reference price levels used only as a fallback interpolator when
+live Yahoo/Stooq history cannot be fetched.
+
+These are NOT official exchange prints and must not be cited as SEC or
+exchange closing prices. AAPL ~$310 as of 2026-08-18 is consistent with
+Yahoo Finance (previous close $305.59 / last ~$310.03); other levels are
+rounded research estimates.
 """
 
 from typing import Dict
 
-# Realistic baseline current/reference stock prices in USD (Year 2026 baseline)
+# Approximate 2026 reference levels (fallback interpolator only — not official prints)
 TICKER_BASELINE_PRICES: Dict[str, float] = {
     # Information Technology - Semiconductors
-    "AMD": 476.15,    # Advanced Micro Devices ($476.15, August 2026 real closing price)
-    "NVDA": 218.84,   # NVIDIA Corporation ($218.84, August 2026 real closing price)
-    "AVGO": 418.16,   # Broadcom Inc. ($418.16, August 2026 real closing price)
+    "AMD": 476.15,    # Advanced Micro Devices (approximate fallback)
+    "NVDA": 218.84,   # NVIDIA Corporation (approximate fallback)
+    "AVGO": 418.16,   # Broadcom Inc. (approximate fallback)
     "INTC": 42.00,    # Intel Corporation (~$42)
     "QCOM": 208.00,   # QUALCOMM Incorporated (~$208)
     "MU": 142.00,     # Micron Technology Inc. (~$142)
     "TXN": 202.00,    # Texas Instruments Incorporated (~$202)
 
     # Information Technology - Software & Services
-    "MSFT": 487.46,   # Microsoft Corporation ($487.46, August 2026 real closing price)
+    "MSFT": 481.63,   # Microsoft Corporation (Yahoo last ~$481.63 on 2026-08-18; fallback)
     "ORCL": 155.00,   # Oracle Corporation (~$155)
     "ADBE": 565.00,   # Adobe Inc. (~$565)
     "PANW": 342.00,   # Palo Alto Networks Inc. (~$342)
@@ -29,7 +33,7 @@ TICKER_BASELINE_PRICES: Dict[str, float] = {
     "CSCO": 55.00,    # Cisco Systems Inc. (~$55)
 
     # Information Technology - Consumer Electronics
-    "AAPL": 311.00,   # Apple Inc. ($311.00, August 2026 real closing price)
+    "AAPL": 310.03,   # Apple Inc. (Yahoo last ~$310.03 on 2026-08-18)
 
     # Health Care - Pharmaceuticals & Biotechnology
     "LLY": 885.00,    # Eli Lilly and Company
@@ -74,7 +78,7 @@ TICKER_BASELINE_PRICES: Dict[str, float] = {
 
     # Communication Services
     "GOOGL": 196.00,  # Alphabet Inc.
-    "META": 588.77,   # Meta Platforms Inc. ($588.77, August 2026 real closing price)
+    "META": 543.67,   # Meta Platforms Inc. (Yahoo last ~$543.67 on 2026-08-18)
     "NFLX": 665.00,   # Netflix Inc.
     "DIS": 114.00,    # The Walt Disney Company
     "CMCSA": 46.00,   # Comcast Corporation

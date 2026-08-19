@@ -4,11 +4,12 @@
   "industry_slug": "discount_stores",
   "year_filter": "ALL",
   "total_companies": 3,
-  "total_transactions": 175,
-  "open_market_buys_count": 26,
-  "open_market_buys_dollar_value": 22360345.0,
-  "open_market_sells_count": 103,
-  "open_market_sells_dollar_value": 68706227.0,
-  "net_dollar_flow": -46345882.0,
-  "buy_sell_dollar_ratio": 0.33
+  "total_transactions": 0,
+  "open_market_buys_count": 0,
+  "open_market_buys_dollar_value": 0,
+  "open_market_sells_count": 0,
+  "open_market_sells_dollar_value": 0,
+  "net_dollar_flow": 0,
+  "buy_sell_dollar_ratio": 0.0,
+  "data_note": "Official SEC Form 4 rows only. Run `python main.py collect` to pull more filings."
 }

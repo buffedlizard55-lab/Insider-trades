@@ -1,8 +1,8 @@
 """
 Historical Daily Stock Market Data & Trading Calendar Engine.
-Provides authoritative US Stock Market trading calendar (excluding weekends & US holidays)
-and real historical daily closing prices for NASDAQ and S&P 500 equities ($1B+ market cap)
-across 2021, 2022, 2023, 2024, 2025, and 2026 YTD.
+Provides a US equity trading calendar (weekends + common NYSE holidays excluded)
+and a fallback interpolated daily close used only when a live price feed is
+unavailable. Interpolated closes are NOT official exchange prints.
 Optimized with precomputed O(1) trading day index lookup for high-speed backtesting.
 """
 
@@ -78,7 +78,9 @@ def _build_trading_calendar() -> Tuple[List[str], Dict[str, int], Dict[str, str]
 
 TRADING_DAYS_LIST, TRADING_DAYS_INDEX, NEAREST_TRADING_DAY = _build_trading_calendar()
 
-# Real historical closing prices at key annual milestones (2020-12-31 to 2026-08-06)
+# Approximate year-end / snapshot anchors used only to interpolate a fallback
+# curve. 2020-2023 figures are rounded from widely published year-end prints;
+# 2024-2026 figures are estimates. Do not cite these as official closes.
 HISTORICAL_YEARLY_ANCHORS: Dict[str, Dict[int, float]] = {
     # Semiconductors
     "AMD":   {2020: 91.71,  2021: 143.90, 2022: 64.77,  2023: 147.41, 2024: 178.50, 2025: 440.00, 2026: 476.15},
@@ -197,9 +199,9 @@ HISTORICAL_YEARLY_ANCHORS: Dict[str, Dict[int, float]] = {
 
 class HistoricalMarketData:
     """
-    Authoritative historical daily market price engine and trading calendar.
-    Guarantees that all transaction dates, entry dates, and exit dates fall on
-    valid US trading days, and that stock prices reflect real-world market history.
+    Trading-calendar helper plus a deterministic interpolated fallback close.
+    Trading-day checks exclude weekends and the holiday set above. Prices from
+    get_daily_closing_price() are interpolated fallbacks, not official prints.
     """
 
     @classmethod
@@ -229,8 +231,9 @@ class HistoricalMarketData:
     @lru_cache(maxsize=None)
     def get_daily_closing_price(cls, ticker: str, date_str: str) -> float:
         """
-        Returns the historical daily closing price of `ticker` on `date_str`.
-        Uses real annual anchor prices and deterministic daily market fluctuations.
+        Interpolated fallback close for `ticker` on `date_str`.
+        Linear blend of yearly anchors plus deterministic hash noise.
+        Not an official exchange last-sale or SEC figure.
         """
         t_upper = ticker.upper().strip()
         anchors = HISTORICAL_YEARLY_ANCHORS.get(t_upper)
